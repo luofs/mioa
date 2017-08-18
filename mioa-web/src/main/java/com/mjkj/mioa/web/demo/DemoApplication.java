@@ -9,8 +9,12 @@
   
 package com.mjkj.mioa.web.demo;  
 
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
+
+import com.mjkj.mioa.web.exception.MioaException;
 
 /**  
  * ClassName:DemoApplication <br/>  
@@ -20,13 +24,27 @@ import org.springframework.web.bind.annotation.RestController;
  * @since    JDK 1.6  
  * @see        
  */
-@RestController
+@Controller
+@RequestMapping("/demo")
 public class DemoApplication
 {
+	@ResponseBody
 	@RequestMapping("/index")
 	public String index()
 	{
 		return "Hello word!";
+	}
+	
+	@RequestMapping("/error")
+	public String error() throws Exception
+	{
+		throw new Exception("exception");
+	}
+	
+	@RequestMapping("/mioaerror")
+	public String mioaError() throws MioaException
+	{
+		throw new MioaException("This is mioa exception");
 	}
 }
   
