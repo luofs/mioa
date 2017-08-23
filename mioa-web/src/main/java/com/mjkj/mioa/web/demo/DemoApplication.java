@@ -9,10 +9,13 @@
   
 package com.mjkj.mioa.web.demo;  
 
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.RestController;
+
+import ch.qos.logback.classic.Logger;
 
 import com.mjkj.mioa.web.exception.MioaException;
 
@@ -28,11 +31,19 @@ import com.mjkj.mioa.web.exception.MioaException;
 @RequestMapping("/demo")
 public class DemoApplication
 {
+
+	private Logger log = (Logger) LoggerFactory.getLogger(DemoApplication.class);
+	
+	@Value("${spring.profiles.active}")
+	private String profiles;
+	
 	@ResponseBody
 	@RequestMapping("/index")
 	public String index()
 	{
-		return "Hello word!";
+		//return "Hello word!";
+		log.info("============== index =================");
+		return profiles;
 	}
 	
 	@RequestMapping("/error")
