@@ -10,8 +10,11 @@
 package com.mjkj.mioa.web.demo;  
 
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -37,6 +40,9 @@ public class DemoApplication
 	@Value("${spring.profiles.active}")
 	private String profiles;
 	
+	@Autowired
+	private StringRedisTemplate redis;
+	
 	@ResponseBody
 	@RequestMapping("/index")
 	public String index()
@@ -56,6 +62,12 @@ public class DemoApplication
 	public String mioaError() throws MioaException
 	{
 		throw new MioaException("This is mioa exception");
+	}
+	
+	@GetMapping("/redis")
+	public String redisDemo()
+	{
+		return redis.opsForValue().get("mydata");
 	}
 }
   

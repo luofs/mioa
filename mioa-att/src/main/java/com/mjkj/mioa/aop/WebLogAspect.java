@@ -7,7 +7,7 @@
  *  
 */  
   
-package com.mjkj.mioa.web.aop;  
+package com.mjkj.mioa.aop;  
 
 import java.util.Arrays;
 
