@@ -49,11 +49,11 @@ public interface ImmunityService
 	 * @return  true/false
 	 * @since JDK 1.7
 	 */
-	public boolean updateImmunity(TAttImmunity immunity);
+	public boolean updateImmunity(TAttImmunity immunity) throws MioaException;
 	
 	/**
 	 * 
-	 * TODO 根据主键查询实体对象TAttImmunity
+	 * TODO 根据主键查询实体对象TAttImmunity（需判空）
 	 * @author fsluo  
 	 * @param id 主键
 	 * @return  实体对象TAttImmunity

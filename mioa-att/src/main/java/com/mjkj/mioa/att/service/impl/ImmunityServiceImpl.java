@@ -9,11 +9,8 @@
   
 package com.mjkj.mioa.att.service.impl;  
 
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Example;
-import org.springframework.data.domain.ExampleMatcher;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
@@ -62,8 +59,12 @@ public class ImmunityServiceImpl implements ImmunityService
 	}
 
 	@Override
-	public boolean updateImmunity(TAttImmunity immunity)
+	public boolean updateImmunity(TAttImmunity immunity) throws MioaException
 	{
+		if(immRepository.isPassImmunity(immunity.getId()))
+		{
+			throw new MioaException("豁免规则已生效，不能更改");
+		}
 		immRepository.save(immunity);
 		return true;
 	}
