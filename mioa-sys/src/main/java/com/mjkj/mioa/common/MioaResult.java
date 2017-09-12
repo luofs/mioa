@@ -13,7 +13,7 @@ package com.mjkj.mioa.common;
  * Date:     2017年8月18日 下午5:35:48 
  * @author   fsluo  
  * @version    
- * @since    JDK 1.7  
+ * @since    JDK 1.6  
  * @see        
  */
 public class MioaResult<T>

@@ -13,8 +13,6 @@ import org.junit.runner.RunWith;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
-import com.mjkj.mioa.AttApplication;
-
 /**  
  * ClassName:AttTest   
  * Date:     2017年8月30日 下午3:33:51 
