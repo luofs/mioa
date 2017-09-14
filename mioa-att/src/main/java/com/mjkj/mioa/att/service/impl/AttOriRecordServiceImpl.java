@@ -15,9 +15,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 
-import com.mjkj.mioa.att.dao.TAttOriRecordRepository;
+import com.mjkj.mioa.att.dao.AttOriRecordRepository;
 import com.mjkj.mioa.att.entity.TAttOriRecord;
-import com.mjkj.mioa.att.service.TAttOriRecordService;
+import com.mjkj.mioa.att.service.AttOriRecordService;
 import com.mjkj.mioa.exception.MioaException;
 
 /**  
@@ -29,11 +29,11 @@ import com.mjkj.mioa.exception.MioaException;
  * @see        原始打卡记录服务实现类
  */
 @Service
-public class TAttOriRecordServiceImpl implements TAttOriRecordService
+public class AttOriRecordServiceImpl implements AttOriRecordService
 {
 	
 	@Autowired
-	private TAttOriRecordRepository oriRecordRepository;
+	private AttOriRecordRepository oriRecordRepository;
 	
 	@Override
 	public TAttOriRecord addAttOriRecord(TAttOriRecord oriRecord)

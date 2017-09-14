@@ -16,7 +16,7 @@ import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.mjkj.mioa.att.entity.TAttImmunity;
-import com.mjkj.mioa.att.service.ImmunityService;
+import com.mjkj.mioa.att.service.AttImmunityService;
 import com.mjkj.mioa.common.Constant;
 import com.mjkj.mioa.exception.MioaException;
 import com.mjkj.mioa.test.AttTest;
@@ -33,7 +33,7 @@ import com.mjkj.mioa.test.AttTest;
 public class ImmunityServiceTest extends AttTest
 {
 	@Autowired
-	private ImmunityService immService;
+	private AttImmunityService immService;
 	
 	@Test
 	public void testAddImmunity() throws MioaException

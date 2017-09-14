@@ -22,7 +22,7 @@ import com.mjkj.mioa.exception.MioaException;
  * @since    JDK 1.7 
  * @see        豁免设置服务
  */
-public interface ImmunityService
+public interface AttImmunityService
 {
 	/**
 	 * TODO 保存豁免设置

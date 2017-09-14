@@ -24,7 +24,7 @@ import com.mjkj.mioa.att.entity.TAttWorkday;
  * @see        
  */
 @Repository
-public interface WorkDayRepository extends JpaRepository<TAttWorkday, String>
+public interface AttWorkDayRepository extends JpaRepository<TAttWorkday, String>
 {
 
 	/**

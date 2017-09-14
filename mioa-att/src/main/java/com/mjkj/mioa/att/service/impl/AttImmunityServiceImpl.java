@@ -18,9 +18,9 @@ import org.springframework.data.domain.Sort;
 import org.springframework.data.domain.Sort.Direction;
 import org.springframework.stereotype.Service;
 
-import com.mjkj.mioa.att.dao.ImmunityRepository;
+import com.mjkj.mioa.att.dao.AttImmunityRepository;
 import com.mjkj.mioa.att.entity.TAttImmunity;
-import com.mjkj.mioa.att.service.ImmunityService;
+import com.mjkj.mioa.att.service.AttImmunityService;
 import com.mjkj.mioa.exception.MioaException;
 
 /**  
@@ -32,10 +32,10 @@ import com.mjkj.mioa.exception.MioaException;
  * @see     豁免设置服务实现   
  */
 @Service
-public class ImmunityServiceImpl implements ImmunityService
+public class AttImmunityServiceImpl implements AttImmunityService
 {
 	@Autowired
-	private ImmunityRepository immRepository;
+	private AttImmunityRepository immRepository;
 
 	@Override
 	public TAttImmunity addImmunity(TAttImmunity immunity) throws MioaException

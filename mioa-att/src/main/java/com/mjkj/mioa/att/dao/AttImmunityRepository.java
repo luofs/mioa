@@ -21,10 +21,10 @@ import com.mjkj.mioa.att.entity.TAttImmunity;
  * @author   fsluo  
  * @version    
  * @since    JDK 1.6  
- * @see        数据库交互类
+ * @see        考勤豁免规则数据库交互类
  */
 @Repository
-public interface ImmunityRepository extends JpaRepository<TAttImmunity, String>
+public interface AttImmunityRepository extends JpaRepository<TAttImmunity, String>
 {
 
 	/**

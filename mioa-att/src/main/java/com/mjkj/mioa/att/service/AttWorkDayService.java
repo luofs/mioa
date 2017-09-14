@@ -22,7 +22,7 @@ import com.mjkj.mioa.exception.MioaException;
  * @since    JDK 1.7  
  * @see        工作日调整服务接口
  */
-public interface WorkDayService
+public interface AttWorkDayService
 {
 	/**
 	 * TODO 添加工作日设置

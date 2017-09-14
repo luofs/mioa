@@ -20,12 +20,12 @@ import com.mjkj.mioa.att.entity.TAttOriRecord;
  * ClassName:TAttOriRecordRepository   
  * Date:     2017年9月12日 上午11:13:12 
  * @author   fsluo  
- * @version    
+ * @version   1.0 
  * @since    JDK 1.6  
- * @see        
+ * @see       考勤原始打卡记录数据库交互类 
  */
 @Repository
-public interface TAttOriRecordRepository extends JpaRepository<TAttOriRecord, String>
+public interface AttOriRecordRepository extends JpaRepository<TAttOriRecord, String>
 {
 
 	/**

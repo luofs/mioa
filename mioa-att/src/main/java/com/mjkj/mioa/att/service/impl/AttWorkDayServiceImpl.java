@@ -18,9 +18,9 @@ import org.springframework.data.domain.Sort;
 import org.springframework.data.domain.Sort.Direction;
 import org.springframework.stereotype.Service;
 
-import com.mjkj.mioa.att.dao.WorkDayRepository;
+import com.mjkj.mioa.att.dao.AttWorkDayRepository;
 import com.mjkj.mioa.att.entity.TAttWorkday;
-import com.mjkj.mioa.att.service.WorkDayService;
+import com.mjkj.mioa.att.service.AttWorkDayService;
 import com.mjkj.mioa.exception.MioaException;
 
 /**  
@@ -32,11 +32,11 @@ import com.mjkj.mioa.exception.MioaException;
  * @see        工作日调整服务接口实现类
  */
 @Service
-public class WorkDayServiceImpl implements WorkDayService
+public class AttWorkDayServiceImpl implements AttWorkDayService
 {
 	
 	@Autowired
-	private WorkDayRepository workDayRepository;
+	private AttWorkDayRepository workDayRepository;
 	
 	@Override
 	public TAttWorkday addWorkDay(TAttWorkday workDay) throws MioaException

@@ -22,7 +22,7 @@ import com.mjkj.mioa.exception.MioaException;
  * @since    JDK 1.7  
  * @see        
  */
-public interface TAttOriRecordService
+public interface AttOriRecordService
 {
 	/**
 	 * TODO 添加原始打卡记录
