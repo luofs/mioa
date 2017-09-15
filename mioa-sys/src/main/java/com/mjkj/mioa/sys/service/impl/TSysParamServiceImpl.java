@@ -18,7 +18,7 @@ import org.springframework.data.domain.Sort.Direction;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 
-import com.mjkj.mioa.common.DBUtil;
+import com.mjkj.mioa.common.db.DBUtil;
 import com.mjkj.mioa.exception.MioaException;
 import com.mjkj.mioa.sys.dao.TSysParamRepository;
 import com.mjkj.mioa.sys.entity.TSysParam;

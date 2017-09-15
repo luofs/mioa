@@ -7,7 +7,7 @@
  *  
 */  
   
-package com.mjkj.mioa.common;  
+package com.mjkj.mioa.common.office;  
 
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;

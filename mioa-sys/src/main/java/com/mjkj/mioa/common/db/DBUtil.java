@@ -7,7 +7,7 @@
  *  
 */  
   
-package com.mjkj.mioa.common;  
+package com.mjkj.mioa.common.db;  
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;

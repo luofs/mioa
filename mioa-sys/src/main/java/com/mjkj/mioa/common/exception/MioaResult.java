@@ -7,7 +7,7 @@
  *  
 */  
   
-package com.mjkj.mioa.common;  
+package com.mjkj.mioa.common.exception;  
 /**  
  * ClassName:MioaException   
  * Date:     2017年8月18日 下午5:35:48 

@@ -7,7 +7,7 @@
  *  
  */
 
-package com.mjkj.mioa.common;
+package com.mjkj.mioa.common.office;
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;

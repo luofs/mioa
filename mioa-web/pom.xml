@@ -69,6 +69,13 @@
            <artifactId>janino</artifactId>  
         </dependency> 
         
+        <!-- mioa jar -->
+        <dependency>
+            <groupId>com.mjkj</groupId>
+            <artifactId>mioa-sys</artifactId>
+            <version>0.0.1-SNAPSHOT</version>
+        </dependency>
+        
 	</dependencies>
 
 	<build>

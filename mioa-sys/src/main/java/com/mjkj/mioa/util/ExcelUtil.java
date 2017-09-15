@@ -31,9 +31,9 @@ import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
 import org.springframework.util.ResourceUtils;
 
-import com.mjkj.mioa.common.ExcelHeader;
-import com.mjkj.mioa.common.ExcelResources;
-import com.mjkj.mioa.common.ExcelTemplate;
+import com.mjkj.mioa.common.office.ExcelHeader;
+import com.mjkj.mioa.common.office.ExcelResources;
+import com.mjkj.mioa.common.office.ExcelTemplate;
 import com.mjkj.mioa.exception.MioaException;
 
 /**  
