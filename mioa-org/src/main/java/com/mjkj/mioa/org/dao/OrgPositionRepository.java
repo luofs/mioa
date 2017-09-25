@@ -9,6 +9,8 @@
   
 package com.mjkj.mioa.org.dao;  
 
+import java.util.List;
+
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
@@ -26,7 +28,9 @@ import com.mjkj.mioa.org.entity.TOrgPosition;
 public interface OrgPositionRepository extends JpaRepository<TOrgPosition, String>
 {
 
-	TOrgPosition findPositionByNameAndDomainAndIsdelete(String name,String domain, int i);
+	TOrgPosition findPositionByNameAndDomainAndIsdeleteEquals(String name,String domain, int i);
+
+	List<TOrgPosition> findPositionByDomainAndIsdeleteEquals(String domain, int i);
 	
 }
   

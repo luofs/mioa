@@ -9,6 +9,8 @@
   
 package com.mjkj.mioa.org.service.impl;  
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -35,7 +37,7 @@ public class OrgPositionServiceImpl implements OrgPositionService
 	@Override
 	public TOrgPosition addPosition(TOrgPosition position) throws MioaException
 	{
-		TOrgPosition dbPosition = positionRepository.findPositionByNameAndDomainAndIsdelete(position.getName(), position.getDomain(), 0);
+		TOrgPosition dbPosition = positionRepository.findPositionByNameAndDomainAndIsdeleteEquals  (position.getName(), position.getDomain(), 0);
 		if (dbPosition != null)
 		{
 			throw new MioaException("岗位已存在");
@@ -65,6 +67,12 @@ public class OrgPositionServiceImpl implements OrgPositionService
 		
 		// TODO Auto-generated method stub  
 		return null;
+	}
+
+	@Override
+	public List<TOrgPosition> findPositionByDomain(String domain) throws MioaException
+	{
+		return positionRepository.findPositionByDomainAndIsdeleteEquals(domain, 0);
 	}
 	
 }

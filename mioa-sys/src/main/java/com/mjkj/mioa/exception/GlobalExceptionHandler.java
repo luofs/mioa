@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.mjkj.mioa.common.exception.MioaResult;
+import com.mjkj.mioa.common.result.MioaResult;
 
 /**  
  * ClassName:GlobalExceptionHandler <br/>  
@@ -40,10 +40,10 @@ public class GlobalExceptionHandler {
 
     @ExceptionHandler(value = MioaException.class)
     @ResponseBody
-    public MioaResult<String> jsonErrorHandler(HttpServletRequest req, MioaException e) throws Exception {
-    	MioaResult<String> ret = new MioaResult<String>();
-    	ret.setRetMessage(e.getMessage());
-    	ret.setRetCode(MioaResult.ERROR);
+    public MioaResult jsonErrorHandler(HttpServletRequest req, MioaException e) throws Exception {
+    	MioaResult ret = new MioaResult();
+    	ret.setMsg(e.getMessage());
+    	ret.setCode(MioaResult.ERROR);
         return ret;
     }
 

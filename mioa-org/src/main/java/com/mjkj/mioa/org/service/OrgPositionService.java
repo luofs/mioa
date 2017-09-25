@@ -9,6 +9,8 @@
   
 package com.mjkj.mioa.org.service;  
 
+import java.util.List;
+
 import com.mjkj.mioa.exception.MioaException;
 import com.mjkj.mioa.org.entity.TOrgPosition;
 
@@ -62,6 +64,16 @@ public interface OrgPositionService
 	 * @since JDK 1.7
 	 */
 	public TOrgPosition findPositionById(String id) throws MioaException;
+	
+	/**
+	 * 	查询域下所有岗位（已删除的不查询）
+	 * @author fsluo  
+	 * @param domain 域
+	 * @return List<TOrgPosition>
+	 * @throws MioaException  
+	 * @since JDK 1.7
+	 */
+	public List<TOrgPosition> findPositionByDomain(String domain) throws MioaException;
 	
 }
   

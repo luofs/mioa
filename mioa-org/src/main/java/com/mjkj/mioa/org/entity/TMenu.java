@@ -1,7 +1,11 @@
 package com.mjkj.mioa.org.entity;
 
 import java.io.Serializable;
+
 import javax.persistence.*;
+
+import org.hibernate.annotations.GenericGenerator;
+
 import java.util.List;
 
 

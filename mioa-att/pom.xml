@@ -65,6 +65,13 @@
            <artifactId>janino</artifactId>  
         </dependency> 
         
+        <!-- mioa sys -->
+        <dependency>
+            <groupId>com.mjkj</groupId>
+            <artifactId>mioa-sys</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+        
     </dependencies>
 
     <build>

@@ -9,8 +9,8 @@
   
 package com.mjkj.mioa.common.db;  
 
-import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.data.jpa.repository.Query;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
 /**  
@@ -22,9 +22,17 @@ import org.springframework.stereotype.Repository;
  * @see        
  */
 @Repository
-public interface DBUtil extends JpaRepository
+public class DBUtil 
 {
-	@Query("select ?1 from ?2 where ?3")
-	String findOneBySql(String field, String tableName, String where);
+	@Autowired
+	private JdbcTemplate jdbcTemplate;
+	
+	private static final String QUERY_BASE = "select ?1 from ?2 where ?3";
+	
+	public String findTableFieldWithCondition(String field, String tableName, String where)
+	{
+		String[] args = new String[]{tableName, field, where};
+		return jdbcTemplate.queryForObject(QUERY_BASE, args, String.class);
+	}
 }
   

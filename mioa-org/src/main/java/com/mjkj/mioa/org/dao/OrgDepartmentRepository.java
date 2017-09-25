@@ -28,7 +28,7 @@ import com.mjkj.mioa.org.entity.TOrgDepartment;
 public interface OrgDepartmentRepository extends JpaRepository<TOrgDepartment, String>
 {
 
-	TOrgDepartment findDepartmentByNameAndParentId(String name, String parentid);
+	TOrgDepartment findDepartmentByNameAndParentid(String name, String parentid);
 
 	List<TOrgDepartment> findAllByDomain(String domain);
 

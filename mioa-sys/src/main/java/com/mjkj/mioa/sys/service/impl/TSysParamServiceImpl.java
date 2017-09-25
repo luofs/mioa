@@ -111,7 +111,7 @@ public class TSysParamServiceImpl implements TSysParamService
 			}
 			String tableName = dbSysparam.getParamTable();
 			String where = "";
-			return dbutil.findOneBySql(field, tableName, where);
+			return dbutil.findTableFieldWithCondition(field, tableName, where);
 		}
 		//3. 取默认值
 		return dbSysparam.getDefaultValue();

@@ -38,7 +38,7 @@ public class OrgDepartmentServiceImpl implements OrgDepartmentService
 	public TOrgDepartment addDepartment(TOrgDepartment department)
 			throws MioaException
 	{
-		TOrgDepartment dbDepartment = departmentRepository.findDepartmentByNameAndParentId(department.getName(), department.getParentid());
+		TOrgDepartment dbDepartment = departmentRepository.findDepartmentByNameAndParentid(department.getName(), department.getParentid());
 		if (dbDepartment != null)
 		{
 			throw new MioaException("该部门已存在");

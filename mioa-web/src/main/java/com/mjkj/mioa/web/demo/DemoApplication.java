@@ -13,14 +13,14 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.redis.core.StringRedisTemplate;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.RestController;
 
 import ch.qos.logback.classic.Logger;
 
-import com.mjkj.mioa.web.exception.MioaException;
+import com.mjkj.mioa.exception.MioaException;
 
 /**  
  * ClassName:DemoApplication <br/>  
@@ -30,7 +30,7 @@ import com.mjkj.mioa.web.exception.MioaException;
  * @since    JDK 1.6  
  * @see        
  */
-@Controller
+@RestController
 @RequestMapping("/demo")
 public class DemoApplication
 {

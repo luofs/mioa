@@ -7,7 +7,7 @@
  *  
 */  
   
-package com.mjkj.mioa.web;  
+package com.mjkj.mioa;  
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

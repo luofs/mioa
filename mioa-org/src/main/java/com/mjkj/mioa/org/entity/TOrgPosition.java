@@ -26,9 +26,11 @@ public class TOrgPosition implements Serializable {
 
 	private String domain;
 
-	private byte isdelete;
+	private int isdelete;
 
 	private String name;
+	
+	private String desc;
 
 	//bi-directional many-to-many association to TOrgDepartment
 	@ManyToMany(mappedBy="TOrgPositions")
@@ -57,11 +59,11 @@ public class TOrgPosition implements Serializable {
 		this.domain = domain;
 	}
 
-	public byte getIsdelete() {
+	public int getIsdelete() {
 		return this.isdelete;
 	}
 
-	public void setIsdelete(byte isdelete) {
+	public void setIsdelete(int isdelete) {
 		this.isdelete = isdelete;
 	}
 
@@ -71,6 +73,16 @@ public class TOrgPosition implements Serializable {
 
 	public void setName(String name) {
 		this.name = name;
+	}
+	
+	public String getDesc()
+	{
+		return desc;
+	}
+
+	public void setDesc(String desc)
+	{
+		this.desc = desc;
 	}
 
 	public List<TOrgDepartment> getTOrgDepartments() {
