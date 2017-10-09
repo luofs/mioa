@@ -13,12 +13,14 @@ import java.util.List;
 
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import ch.qos.logback.classic.Logger;
 
+import com.mjkj.mioa.common.result.MioaResult;
+import com.mjkj.mioa.common.result.MioaResultGenerator;
 import com.mjkj.mioa.exception.MioaException;
 import com.mjkj.mioa.org.entity.TOrgPosition;
 import com.mjkj.mioa.org.service.OrgPositionService;
@@ -41,10 +43,13 @@ public class PositionController
 	@Autowired
 	private OrgPositionService positionService;
 	
-	@RequestMapping("/findPosition/{domain}")
-	public List<TOrgPosition> getOrgPosition(@PathVariable("domain") String domain) throws MioaException
+	@RequestMapping("/findPosition")
+	public MioaResult getOrgPosition(@RequestParam("domain") String domain) throws MioaException
 	{
-		return positionService.findPositionByDomain(domain);
+		 List<TOrgPosition> data = positionService.findPositionByDomain(domain);
+		 MioaResult result = MioaResultGenerator.succeResult(data);
+		 result.setCount(data.size());
+		 return result;
 	}
 	
 }
