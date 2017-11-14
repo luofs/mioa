@@ -6,8 +6,6 @@ import javax.persistence.*;
 
 import org.hibernate.annotations.GenericGenerator;
 
-import java.util.List;
-
 
 /**
  * The persistent class for the t_menu database table.
@@ -28,15 +26,13 @@ public class TMenu implements Serializable {
 
 	private byte isdel;
 
-	private String name;
-
 	private String parentid;
 
-	private String path;
+	private String spread;
 
-	//bi-directional many-to-many association to TOrgRole
-	@ManyToMany(mappedBy="TMenus")
-	private List<TOrgRole> TOrgRoles;
+	private String title;
+
+	private String url;
 
 	public TMenu() {
 	}
@@ -65,14 +61,6 @@ public class TMenu implements Serializable {
 		this.isdel = isdel;
 	}
 
-	public String getName() {
-		return this.name;
-	}
-
-	public void setName(String name) {
-		this.name = name;
-	}
-
 	public String getParentid() {
 		return this.parentid;
 	}
@@ -81,20 +69,28 @@ public class TMenu implements Serializable {
 		this.parentid = parentid;
 	}
 
-	public String getPath() {
-		return this.path;
+	public String getSpread() {
+		return this.spread;
 	}
 
-	public void setPath(String path) {
-		this.path = path;
+	public void setSpread(String spread) {
+		this.spread = spread;
 	}
 
-	public List<TOrgRole> getTOrgRoles() {
-		return this.TOrgRoles;
+	public String getTitle() {
+		return this.title;
 	}
 
-	public void setTOrgRoles(List<TOrgRole> TOrgRoles) {
-		this.TOrgRoles = TOrgRoles;
+	public void setTitle(String title) {
+		this.title = title;
+	}
+
+	public String getUrl() {
+		return this.url;
+	}
+
+	public void setUrl(String url) {
+		this.url = url;
 	}
 
 }
