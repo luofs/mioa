@@ -33,6 +33,7 @@ public class GlobalExceptionHandler {
     public ModelAndView defaultErrorHandler(HttpServletRequest req, Exception e) throws Exception {
         ModelAndView mav = new ModelAndView();
         mav.addObject("exception", e);
+        e.printStackTrace();
         mav.addObject("url", req.getRequestURL());
         mav.setViewName("mioaException");
         return mav;

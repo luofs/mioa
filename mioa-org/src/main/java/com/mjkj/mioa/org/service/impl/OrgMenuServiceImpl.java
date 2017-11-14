@@ -37,7 +37,7 @@ public class OrgMenuServiceImpl implements OrgMenuService
 	@Override
 	public TMenu addMenu(TMenu menu) throws MioaException
 	{
-		TMenu dbMenu =  menuRepository.findMenuByNameAndDomainAndIsdel(menu.getName(), menu.getDomain(), (byte) 1);
+		TMenu dbMenu =  menuRepository.findMenuByNameAndDomainAndIsdel(menu.getTitle(), menu.getDomain(), (byte) 1);
 		if(dbMenu != null)
 		{
 			throw new MioaException("菜单已存在");

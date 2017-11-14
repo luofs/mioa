@@ -6,8 +6,6 @@ import javax.persistence.*;
 
 import org.hibernate.annotations.GenericGenerator;
 
-import java.util.List;
-
 
 /**
  * The persistent class for the t_org_role database table.
@@ -31,23 +29,6 @@ public class TOrgRole implements Serializable {
 	private byte isdel;
 
 	private String name;
-
-	//bi-directional many-to-many association to TMenu
-	@ManyToMany
-	@JoinTable(
-		name="t_role_menu"
-		, joinColumns={
-			@JoinColumn(name="roleid")
-			}
-		, inverseJoinColumns={
-			@JoinColumn(name="menuid")
-			}
-		)
-	private List<TMenu> TMenus;
-
-	//bi-directional many-to-many association to TOrgUser
-	@ManyToMany(mappedBy="TOrgRoles")
-	private List<TOrgUser> TOrgUsers;
 
 	public TOrgRole() {
 	}
@@ -90,22 +71,6 @@ public class TOrgRole implements Serializable {
 
 	public void setName(String name) {
 		this.name = name;
-	}
-
-	public List<TMenu> getTMenus() {
-		return this.TMenus;
-	}
-
-	public void setTMenus(List<TMenu> TMenus) {
-		this.TMenus = TMenus;
-	}
-
-	public List<TOrgUser> getTOrgUsers() {
-		return this.TOrgUsers;
-	}
-
-	public void setTOrgUsers(List<TOrgUser> TOrgUsers) {
-		this.TOrgUsers = TOrgUsers;
 	}
 
 }
