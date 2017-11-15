@@ -10,11 +10,9 @@
 package com.mjkj.mioa.org.service.impl;  
 
 import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
-
 import com.mjkj.mioa.exception.MioaException;
 import com.mjkj.mioa.org.dao.OrgMenuRepository;
 import com.mjkj.mioa.org.entity.TMenu;
@@ -88,6 +86,12 @@ public class OrgMenuServiceImpl implements OrgMenuService
 			throw new MioaException("参数不完整");
 		}
 		return menuRepository.findMenuByUserIdAndDomain(userid, domain);
+	}
+
+	@Override
+	public List<TMenu> findRoleMenu(String roleid) throws MioaException
+	{
+		return menuRepository.findRoleMenu(roleid);
 	}
 	
 }

@@ -10,10 +10,8 @@
 package com.mjkj.mioa.org.dao;  
 
 import java.util.List;
-
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
-
 import com.mjkj.mioa.org.entity.TMenu;
 
 /**  
@@ -33,6 +31,8 @@ public interface OrgMenuRepository extends JpaRepository<TMenu, String>
 	List<TMenu> findMenuByDomain(String domain);
 
 	List<TMenu> findMenuByUserIdAndDomain(String userid, String domain);
+
+	List<TMenu> findRoleMenu(String roleid);
 	
 }
   

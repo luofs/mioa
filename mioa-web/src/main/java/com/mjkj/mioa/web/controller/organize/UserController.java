@@ -69,5 +69,12 @@ public class UserController
 		}
 		return new MioaResult();
 	}
+	
+	@RequestMapping("/updateUser")
+	public MioaResult updateUser(TOrgUser user) throws MioaException
+	{
+		orgUserService.updateUser(user);
+		return new MioaResult();
+	}
 }
   
