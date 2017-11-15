@@ -10,6 +10,8 @@
 package com.mjkj.mioa.org.service.impl;  
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Example;
+import org.springframework.data.domain.ExampleMatcher;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
@@ -17,6 +19,8 @@ import org.springframework.data.domain.Sort;
 import org.springframework.data.domain.Sort.Direction;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
+
+import com.mjkj.mioa.att.entity.TAttHoliday;
 import com.mjkj.mioa.exception.MioaException;
 import com.mjkj.mioa.org.dao.OrgUserRepository;
 import com.mjkj.mioa.org.entity.TOrgUser;
@@ -56,6 +60,14 @@ public class OrgUserServiceImpl implements OrgUserService
 			throw new MioaException("param name is null");
 		}
 		return orgUserRepository.findByName(name);
+	}
+
+	@Override
+	public void addUser(TOrgUser user)
+	{
+		Example<TOrgUser> example = Example.of(user, ExampleMatcher.matching().withMatcher("name", ExampleMatcher.GenericPropertyMatchers.ignoreCase()));
+		boolean exist = orgUserRepository.exists(example);
+		
 	}
 	
 }
