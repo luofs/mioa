@@ -31,6 +31,8 @@ public interface OrgMenuRepository extends JpaRepository<TMenu, String>
 	TMenu findMenuByNameAndDomainAndIsdel(String name, String domain, byte isdel);
 
 	List<TMenu> findMenuByDomain(String domain);
+
+	List<TMenu> findMenuByUserIdAndDomain(String userid, String domain);
 	
 }
   

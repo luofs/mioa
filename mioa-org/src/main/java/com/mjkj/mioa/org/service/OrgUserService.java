@@ -27,4 +27,6 @@ public interface OrgUserService
 	Page<TOrgUser> findUserByPage(int page, int pageSize) throws MioaException;
 	
 	TOrgUser findByName(String name) throws MioaException;
+	
+	void addUser(TOrgUser user);
 }

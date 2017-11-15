@@ -13,6 +13,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.util.StringUtils;
 
 import com.mjkj.mioa.exception.MioaException;
 import com.mjkj.mioa.org.dao.OrgMenuRepository;
@@ -77,6 +78,16 @@ public class OrgMenuServiceImpl implements OrgMenuService
 	public List<TMenu> findAllMenu(String domain) throws MioaException
 	{
 		return menuRepository.findMenuByDomain(domain);
+	}
+
+	@Override
+	public List<TMenu> findUserMen(String userid, String domain) throws MioaException
+	{
+		if(StringUtils.isEmpty(domain) || StringUtils.isEmpty(userid))
+		{
+			throw new MioaException("参数不完整");
+		}
+		return menuRepository.findMenuByUserIdAndDomain(userid, domain);
 	}
 	
 }
