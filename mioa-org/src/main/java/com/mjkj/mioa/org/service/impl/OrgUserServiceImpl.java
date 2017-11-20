@@ -19,7 +19,6 @@ import org.springframework.data.domain.Sort;
 import org.springframework.data.domain.Sort.Direction;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
-
 import com.mjkj.mioa.exception.MioaException;
 import com.mjkj.mioa.org.dao.OrgUserRepository;
 import com.mjkj.mioa.org.entity.TOrgUser;
@@ -82,6 +81,12 @@ public class OrgUserServiceImpl implements OrgUserService
 			throw new MioaException("用户不存在");
 		}
 		return orgUserRepository.save(user);
+	}
+
+	@Override
+	public void delUser(String id) throws MioaException
+	{
+		orgUserRepository.delete(id);
 	}
 	
 }

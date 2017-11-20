@@ -84,5 +84,7 @@ public interface OrgMenuService
 	 * @since JDK 1.7
 	 */
 	public List<TMenu> findUserMen(String userid, String domain) throws MioaException;
+	
+	List<TMenu> findRoleMenu(String roleid) throws MioaException;
 }
   
