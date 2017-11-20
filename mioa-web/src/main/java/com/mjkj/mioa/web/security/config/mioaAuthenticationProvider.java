@@ -18,6 +18,7 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 import com.mjkj.mioa.exception.MioaException;
 import com.mjkj.mioa.org.entity.TOrgUser;
 import com.mjkj.mioa.org.service.OrgUserService;
@@ -34,7 +35,7 @@ import com.mjkj.mioa.web.security.vo.SecurityUser;
  * @since    JDK 1.7.0_67  
  * @see        
  */
-@Component
+@Service
 public class mioaAuthenticationProvider implements AuthenticationProvider
 {
 	

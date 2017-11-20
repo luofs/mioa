@@ -21,10 +21,9 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.web.access.intercept.FilterSecurityInterceptor;
-
+import com.mjkj.mioa.web.security.filter.SecurityFilter;
 import com.mjkj.mioa.web.security.handler.LoginSuccessHandler;
 import com.mjkj.mioa.web.security.service.CustomUserService;
-import com.mjkj.mioa.web.security.vo.SecurityFilter;
 
 /**  
  * ClassName:WebSecurityConfig <br/>  
@@ -73,7 +72,9 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter
 			.and().formLogin().loginPage("/").permitAll().successHandler(loginSuccessHandler())
 			.and().logout().logoutSuccessUrl("/").permitAll()
 			.invalidateHttpSession(true)
-			.and().rememberMe().tokenValiditySeconds(1209600);
+			.and().httpBasic()
+			.and().rememberMe().tokenValiditySeconds(1209600)
+			.and().sessionManagement().maximumSessions(1).expiredUrl("/");
 	}
 	
 	@Bean

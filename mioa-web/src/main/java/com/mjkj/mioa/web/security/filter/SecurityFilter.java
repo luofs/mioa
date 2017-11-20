@@ -7,7 +7,7 @@
  *  
  */
 
-package com.mjkj.mioa.web.security.vo;
+package com.mjkj.mioa.web.security.filter;
 
 import java.io.IOException;
 import javax.annotation.PostConstruct;
@@ -22,7 +22,11 @@ import org.springframework.security.access.SecurityMetadataSource;
 import org.springframework.security.access.intercept.AbstractSecurityInterceptor;
 import org.springframework.security.access.intercept.InterceptorStatusToken;
 import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.web.FilterInvocation;
+import org.springframework.stereotype.Component;
+import com.mjkj.mioa.web.security.config.mioaAuthenticationProvider;
 import com.mjkj.mioa.web.security.service.CustomAccessDecisionManager;
 import com.mjkj.mioa.web.security.service.CustomInvocationSecurityMetadataSourceService;
 
@@ -38,6 +42,7 @@ import com.mjkj.mioa.web.security.service.CustomInvocationSecurityMetadataSource
  * @since JDK 1.7.0_67
  * @see
  */
+@Component
 public class SecurityFilter extends AbstractSecurityInterceptor implements Filter
 {
 
@@ -47,13 +52,20 @@ public class SecurityFilter extends AbstractSecurityInterceptor implements Filte
 	@Autowired
 	private CustomAccessDecisionManager myAccessDecisionManager;
 
-	@Autowired
-	private AuthenticationManager authenticationManager;
+	private mioaAuthenticationProvider authenticationProvider;
 
 	@PostConstruct
 	public void init()
 	{
-		super.setAuthenticationManager(authenticationManager);
+		super.setAuthenticationManager(new AuthenticationManager()
+		{
+			
+			@Override
+			public Authentication authenticate(Authentication authentication) throws AuthenticationException
+			{
+				return authenticationProvider.authenticate(authentication);
+			}
+		});
 		super.setAccessDecisionManager(myAccessDecisionManager);
 	}
 

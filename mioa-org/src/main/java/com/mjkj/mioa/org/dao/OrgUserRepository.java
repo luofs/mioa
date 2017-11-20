@@ -29,7 +29,7 @@ public interface OrgUserRepository extends JpaRepository<TOrgUser, String>
 
 	TOrgUser findByName(String name);
 
-	@Query("update t_org_user set disable = ? where id = ?")
+	@Query("update TOrgUser set disable = ? where id = ?")
 	void disableOrEnableUser(String id, byte flag);
 	
 }

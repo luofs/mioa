@@ -23,6 +23,8 @@ import org.springframework.security.web.FilterInvocation;
 import org.springframework.security.web.access.intercept.FilterInvocationSecurityMetadataSource;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 import org.springframework.security.web.util.matcher.RequestMatcher;
+import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 import com.mjkj.mioa.org.entity.TMenu;
 import com.mjkj.mioa.org.entity.TOrgRole;
 import com.mjkj.mioa.org.service.OrgMenuService;
@@ -40,6 +42,7 @@ import com.mjkj.mioa.org.service.OrgRoleService;
  * @since JDK 1.7.0_67
  * @see 用来加载权限对应的url
  */
+@Service
 public class CustomInvocationSecurityMetadataSourceService implements FilterInvocationSecurityMetadataSource
 {
 
@@ -50,20 +53,17 @@ public class CustomInvocationSecurityMetadataSourceService implements FilterInvo
 
 	private static Map<String, Collection<ConfigAttribute>> resourceMap = null;
 
-	/*
-	 * public CustomInvocationSecurityMetadataSourceService(SResourceService sres,SRoleService sR) {
-	 * this.sResourceService = sres; this.sRoleService = sR; loadResourceDefine(); }
-	 */
+	public CustomInvocationSecurityMetadataSourceService(){}
 
 	/**
 	 * 在Web服务器启动时，提取系统中的所有权限 被@PostConstruct修饰的方法会在服务器加载Servle的时候运行，并且只会被服务器执行一次。PostConstruct在构造函数之后执行,init()方法之前执行。
 	 */
 	@PostConstruct
-	private void loadResourceDefine(String domain)
+	private void loadResourceDefine()
 	{
 		try
 		{
-
+			String domain = "fs.com";
 			List<TOrgRole> roleList = orgRoleService.findAllRoleByDomain(domain);
 
 			resourceMap = new HashMap<String, Collection<ConfigAttribute>>();
@@ -116,7 +116,7 @@ public class CustomInvocationSecurityMetadataSourceService implements FilterInvo
 		FilterInvocation filterInvocation = (FilterInvocation) object;
 		if (resourceMap == null)
 		{
-			loadResourceDefine("msm");
+			loadResourceDefine();
 		}
 		Iterator<String> ite = resourceMap.keySet().iterator();
 		while (ite.hasNext())

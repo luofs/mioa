@@ -25,10 +25,10 @@ import com.mjkj.mioa.org.entity.TOrgRole;
  * @see        
  */
 @Repository
-public interface OrgRoleRepository extends JpaRepository<String, TOrgRole>
+public interface OrgRoleRepository extends JpaRepository<TOrgRole, String>
 {
 
-	List<TOrgRole> findAllRoleByDomain(String domain);
+	List<TOrgRole> findRoleByDomain(String domain);
 
 }
   

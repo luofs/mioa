@@ -45,13 +45,13 @@ public class TOrgUser{
 
 	private String realname;
 
-	private byte sex;
+	private byte sex = 0;
 
 	private String telephone;
 
 	private Timestamp updatetime;
 	
-	private byte disable;
+	private byte disable = 0;
 
 	//bi-directional many-to-many association to TOrgPosition
 	@ManyToMany
