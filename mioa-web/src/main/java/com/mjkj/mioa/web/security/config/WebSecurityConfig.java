@@ -9,6 +9,7 @@
   
 package com.mjkj.mioa.web.security.config;   
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
@@ -17,7 +18,10 @@ import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.web.access.intercept.FilterSecurityInterceptor;
+import com.mjkj.mioa.web.security.handler.LoginSuccessHandler;
 import com.mjkj.mioa.web.security.service.CustomUserService;
+import com.mjkj.mioa.web.security.vo.SecurityFilter;
 
 /**  
  * ClassName:WebSecurityConfig <br/>  
@@ -34,6 +38,9 @@ import com.mjkj.mioa.web.security.service.CustomUserService;
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter
 {
 
+	@Autowired
+	private SecurityFilter securityFilter;
+	
 	@Bean
 	UserDetailsService customUserService()
 	{
@@ -51,13 +58,22 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter
 	{
 		//TODO 暂时关闭该功能，为了安全后续将不能关闭
 		http.csrf().disable();
-		http.authorizeRequests()
+		http.addFilterBefore(securityFilter, FilterSecurityInterceptor.class)
+			.authorizeRequests()
 			.antMatchers("/","/index","/login","/backstage/login.html").permitAll()
 			.anyRequest().authenticated()
-			.and().formLogin().loginPage("/").permitAll()
-			.and().logout().permitAll();
+			.and().formLogin().loginPage("/").permitAll().successHandler(loginSuccessHandler())
+			.and().logout().logoutSuccessUrl("/").permitAll()
+			.invalidateHttpSession(true)
+			.and().rememberMe().tokenValiditySeconds(1209600);
 	}
 	
+	@Bean
+	public LoginSuccessHandler loginSuccessHandler()
+	{
+		return new LoginSuccessHandler();
+	}
+
 	@Override
 	public void configure(WebSecurity web) throws Exception
 	{

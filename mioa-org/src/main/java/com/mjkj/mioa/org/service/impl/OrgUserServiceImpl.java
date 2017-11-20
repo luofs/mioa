@@ -20,7 +20,6 @@ import org.springframework.data.domain.Sort.Direction;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 
-import com.mjkj.mioa.att.entity.TAttHoliday;
 import com.mjkj.mioa.exception.MioaException;
 import com.mjkj.mioa.org.dao.OrgUserRepository;
 import com.mjkj.mioa.org.entity.TOrgUser;
@@ -63,11 +62,26 @@ public class OrgUserServiceImpl implements OrgUserService
 	}
 
 	@Override
-	public void addUser(TOrgUser user)
+	public TOrgUser addUser(TOrgUser user) throws MioaException
 	{
 		Example<TOrgUser> example = Example.of(user, ExampleMatcher.matching().withMatcher("name", ExampleMatcher.GenericPropertyMatchers.ignoreCase()));
 		boolean exist = orgUserRepository.exists(example);
-		
+		if(exist)
+		{
+			throw new MioaException("账号已存在");
+		}
+		return orgUserRepository.save(user);
+	}
+
+	@Override
+	public TOrgUser updateUser(TOrgUser user) throws MioaException
+	{
+		boolean exist = orgUserRepository.exists(user.getId());
+		if(!exist)
+		{
+			throw new MioaException("用户不存在");
+		}
+		return orgUserRepository.save(user);
 	}
 	
 }

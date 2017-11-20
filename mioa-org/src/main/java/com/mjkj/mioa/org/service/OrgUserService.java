@@ -10,6 +10,7 @@
 package com.mjkj.mioa.org.service;  
 
 import org.springframework.data.domain.Page;
+
 import com.mjkj.mioa.exception.MioaException;
 import com.mjkj.mioa.org.entity.TOrgUser;
 
@@ -28,5 +29,7 @@ public interface OrgUserService
 	
 	TOrgUser findByName(String name) throws MioaException;
 	
-	void addUser(TOrgUser user);
+	TOrgUser addUser(TOrgUser user) throws MioaException;
+	
+	TOrgUser updateUser(TOrgUser user) throws MioaException;
 }

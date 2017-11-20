@@ -21,6 +21,7 @@ import org.springframework.stereotype.Component;
 import com.mjkj.mioa.exception.MioaException;
 import com.mjkj.mioa.org.entity.TOrgUser;
 import com.mjkj.mioa.org.service.OrgUserService;
+import com.mjkj.mioa.web.security.vo.SecurityUser;
 
 
 /**  
@@ -61,8 +62,9 @@ public class mioaAuthenticationProvider implements AuthenticationProvider
 		{
 			throw new BadCredentialsException("Wrong password.");
 		}
-		Collection<? extends GrantedAuthority> authorities = user.getAuthorities();
-	     return new UsernamePasswordAuthenticationToken(user, password, authorities);
+		SecurityUser securityUser = new SecurityUser(user);
+		Collection<? extends GrantedAuthority> authorities = securityUser.getAuthorities();
+	     return new UsernamePasswordAuthenticationToken(securityUser, password, authorities);
 	}
 
 	@Override

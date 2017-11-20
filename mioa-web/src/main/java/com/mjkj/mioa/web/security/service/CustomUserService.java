@@ -15,7 +15,7 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import com.mjkj.mioa.org.dao.OrgUserRepository;
 import com.mjkj.mioa.org.entity.TOrgUser;
-import com.mjkj.mioa.org.service.OrgUserService;
+import com.mjkj.mioa.web.security.vo.SecurityUser;
 
 
 /**  
@@ -42,7 +42,7 @@ public class CustomUserService implements UserDetailsService
 		{
 			throw new UsernameNotFoundException("用户名不存在");
 		}
-		return user;
+		return new SecurityUser(user);
 	}
 
 }

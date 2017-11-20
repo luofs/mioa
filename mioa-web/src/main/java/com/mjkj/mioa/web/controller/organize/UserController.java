@@ -15,6 +15,7 @@ import org.apache.commons.beanutils.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -50,7 +51,7 @@ public class UserController
 		return result;
 	}
 	
-	@RequestMapping("/addUser")
+	@RequestMapping(value = "/addUser", method = RequestMethod.POST)
 	public MioaResult addUser(UserVO uservo) throws MioaException
 	{
 		try
@@ -58,6 +59,26 @@ public class UserController
 			TOrgUser user = new TOrgUser();
 			BeanUtils.copyProperties(user, uservo);
 			orgUserService.addUser(user);
+		} catch (IllegalAccessException e)
+		{
+			e.printStackTrace();  
+			
+		} catch (InvocationTargetException e)
+		{
+			e.printStackTrace();  
+			
+		}
+		return new MioaResult();
+	}
+	
+	@RequestMapping(value = "updateUser", method = RequestMethod.POST)
+	public MioaResult updateUser(UserVO uservo) throws MioaException
+	{
+		try
+		{
+			TOrgUser user = new TOrgUser();
+			BeanUtils.copyProperties(user, uservo);
+			orgUserService.updateUser(user);
 		} catch (IllegalAccessException e)
 		{
 			e.printStackTrace();  
