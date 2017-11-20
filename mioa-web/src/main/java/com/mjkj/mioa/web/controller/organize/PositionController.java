@@ -14,6 +14,7 @@ import java.util.List;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -24,6 +25,7 @@ import com.mjkj.mioa.common.result.MioaResultGenerator;
 import com.mjkj.mioa.exception.MioaException;
 import com.mjkj.mioa.org.entity.TOrgPosition;
 import com.mjkj.mioa.org.service.OrgPositionService;
+import com.mjkj.mioa.web.vo.position.PositionVO;
 
 /**  
  * ClassName:PositionController   
@@ -50,6 +52,23 @@ public class PositionController
 		 MioaResult result = MioaResultGenerator.succeResult(data);
 		 result.setCount(data.size());
 		 return result;
+	}
+	
+	@RequestMapping(value="/addPosition", method=RequestMethod.POST)
+	public MioaResult addPositon(PositionVO positionvo) throws MioaException
+	{
+		TOrgPosition position = new TOrgPosition(positionvo.getName(), positionvo.getDesc());
+		position = positionService.addPosition(position);
+		MioaResult result = MioaResultGenerator.succeResult(position);
+		 result.setCount(1);
+		 return result;
+	}
+	
+	@RequestMapping(value="deletePosition", method=RequestMethod.POST)
+	public MioaResult deletePosition(String id) throws MioaException
+	{
+		positionService.removePosition(id);
+		return new MioaResult();
 	}
 	
 }

@@ -12,13 +12,16 @@ package com.mjkj.mioa.web.security.config;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.security.authentication.encoding.Md5PasswordEncoder;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.web.access.intercept.FilterSecurityInterceptor;
+
 import com.mjkj.mioa.web.security.handler.LoginSuccessHandler;
 import com.mjkj.mioa.web.security.service.CustomUserService;
 import com.mjkj.mioa.web.security.vo.SecurityFilter;
@@ -50,14 +53,19 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter
 	@Override
 	protected void configure(AuthenticationManagerBuilder auth) throws Exception
 	{
-		auth.userDetailsService(customUserService());
+		auth.userDetailsService(customUserService())
+				.passwordEncoder(new Md5PasswordEncoder());
 	}
 	
 	@Override
 	protected void configure(HttpSecurity http) throws Exception
 	{
-		//TODO 暂时关闭该功能，为了安全后续将不能关闭
+		//使用JWT，关闭csrf
 		http.csrf().disable();
+		//采用token方式，不需要session
+		http.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
+		//禁用缓存
+		http.headers().cacheControl();
 		http.addFilterBefore(securityFilter, FilterSecurityInterceptor.class)
 			.authorizeRequests()
 			.antMatchers("/","/index","/login","/backstage/login.html").permitAll()

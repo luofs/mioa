@@ -90,5 +90,12 @@ public class UserController
 		}
 		return new MioaResult();
 	}
+	
+	@RequestMapping(value="disableOrEnableUser", method = RequestMethod.POST)
+	public MioaResult disableOrEnableUser(@RequestParam("id")String id, @RequestParam("flag") byte flag)
+	{
+		orgUserService.disableOrEnableUser(id, flag);
+		return new MioaResult();
+	}
 }
   

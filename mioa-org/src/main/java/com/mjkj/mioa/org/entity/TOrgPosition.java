@@ -42,6 +42,11 @@ public class TOrgPosition implements Serializable {
 
 	public TOrgPosition() {
 	}
+	
+	public TOrgPosition(String name, String desc){
+		this.name = name;
+		this.desc = desc;
+	}
 
 	public String getId() {
 		return this.id;

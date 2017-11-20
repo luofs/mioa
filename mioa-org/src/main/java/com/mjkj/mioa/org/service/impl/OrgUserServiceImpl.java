@@ -19,6 +19,7 @@ import org.springframework.data.domain.Sort;
 import org.springframework.data.domain.Sort.Direction;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
+
 import com.mjkj.mioa.exception.MioaException;
 import com.mjkj.mioa.org.dao.OrgUserRepository;
 import com.mjkj.mioa.org.entity.TOrgUser;
@@ -87,6 +88,12 @@ public class OrgUserServiceImpl implements OrgUserService
 	public void delUser(String id) throws MioaException
 	{
 		orgUserRepository.delete(id);
+	}
+
+	@Override
+	public void disableOrEnableUser(String id, byte flag)
+	{
+		orgUserRepository.disableOrEnableUser(id, flag);
 	}
 	
 }

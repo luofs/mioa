@@ -50,6 +50,8 @@ public class TOrgUser{
 	private String telephone;
 
 	private Timestamp updatetime;
+	
+	private byte disable;
 
 	//bi-directional many-to-many association to TOrgPosition
 	@ManyToMany
@@ -199,5 +201,16 @@ public class TOrgUser{
 	public void setTOrgRoles(List<TOrgRole> TOrgRoles) {
 		this.TOrgRoles = TOrgRoles;
 	}
+
+	public byte getDisable()
+	{
+		return disable;
+	}
+
+	public void setDisable(byte disable)
+	{
+		this.disable = disable;
+	}
+	
 
 }

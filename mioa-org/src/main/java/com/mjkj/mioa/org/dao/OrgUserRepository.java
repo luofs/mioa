@@ -10,7 +10,9 @@
 package com.mjkj.mioa.org.dao;  
 
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
+
 import com.mjkj.mioa.org.entity.TOrgUser;
 
 /**  
@@ -26,6 +28,9 @@ public interface OrgUserRepository extends JpaRepository<TOrgUser, String>
 {
 
 	TOrgUser findByName(String name);
+
+	@Query("update t_org_user set disable = ? where id = ?")
+	void disableOrEnableUser(String id, byte flag);
 	
 }
   

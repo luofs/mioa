@@ -34,4 +34,6 @@ public interface OrgUserService
 	TOrgUser updateUser(TOrgUser user) throws MioaException;
 	
 	void delUser(String id) throws MioaException;
+	
+	void disableOrEnableUser(String id, byte flag);
 }
