@@ -42,7 +42,7 @@ public class OrgRoleServiceImpl implements OrgRoleService
 		{
 			throw new MioaException("参数不完整");
 		}
-		return orgRoleRepository.findAllRoleByDomain(domain);
+		return orgRoleRepository.findRoleByDomain(domain);
 	}
 
 }

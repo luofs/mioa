@@ -36,7 +36,7 @@ public class OrgMenuServiceImpl implements OrgMenuService
 	@Override
 	public TMenu addMenu(TMenu menu) throws MioaException
 	{
-		TMenu dbMenu =  menuRepository.findMenuByNameAndDomainAndIsdel(menu.getTitle(), menu.getDomain(), (byte) 1);
+		TMenu dbMenu =  menuRepository.findMenuByTitleAndDomainAndIsdel(menu.getTitle(), menu.getDomain(), (byte) 1);
 		if(dbMenu != null)
 		{
 			throw new MioaException("菜单已存在");
@@ -85,13 +85,15 @@ public class OrgMenuServiceImpl implements OrgMenuService
 		{
 			throw new MioaException("参数不完整");
 		}
-		return menuRepository.findMenuByUserIdAndDomain(userid, domain);
+		//return menuRepository.findMenuByUserIdAndDomain(userid, domain);
+		return null;
 	}
 
 	@Override
 	public List<TMenu> findRoleMenu(String roleid) throws MioaException
 	{
-		return menuRepository.findRoleMenu(roleid);
+		//return menuRepository.findRoleMenu(roleid);
+		return null;
 	}
 	
 }
