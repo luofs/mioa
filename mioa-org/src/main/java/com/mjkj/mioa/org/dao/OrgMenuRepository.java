@@ -26,13 +26,13 @@ import com.mjkj.mioa.org.entity.TMenu;
 public interface OrgMenuRepository extends JpaRepository<TMenu, String>
 {
 
-	TMenu findMenuByNameAndDomainAndIsdel(String name, String domain, byte isdel);
+	TMenu findMenuByTitleAndDomainAndIsdel(String name, String domain, byte isdel);
 
 	List<TMenu> findMenuByDomain(String domain);
 
-	List<TMenu> findMenuByUserIdAndDomain(String userid, String domain);
+	//List<TMenu> findMenuByUserIdAndDomain(String userid, String domain);
 
-	List<TMenu> findRoleMenu(String roleid);
+	//List<TMenu> findRoleMenu(String roleid);
 	
 }
   
