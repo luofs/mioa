@@ -56,12 +56,16 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-aop</artifactId>
         </dependency>
-        <!-- 
+        <!-- security -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-security</artifactId>
         </dependency>
-         -->
+        <dependency>
+        	<groupId>org.springframework.security.oauth</groupId>
+			<artifactId>spring-security-oauth2</artifactId>
+        </dependency>
+         
         <!-- redis -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -83,6 +87,12 @@
             <groupId>mysql</groupId>
             <artifactId>mysql-connector-java</artifactId>
         </dependency>
+        
+        <dependency>
+		  <groupId>org.apache.commons</groupId>
+		  <artifactId>commons-lang3</artifactId>
+		  <version>3.7</version>
+		</dependency>
         
         <!-- mioa jar -->
         <dependency>
