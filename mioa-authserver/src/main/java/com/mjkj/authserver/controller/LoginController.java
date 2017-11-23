@@ -7,22 +7,18 @@
  *  
 */  
   
-package com.mjkj.mioa.web.controller;   
+package com.mjkj.authserver.controller;   
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.authentication.encoding.Md5PasswordEncoder;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
 
-import com.mjkj.mioa.common.result.MioaResult;
+import com.mjkj.authserver.vo.LoginVO;
 import com.mjkj.mioa.exception.MioaException;
 import com.mjkj.mioa.org.entity.TOrgUser;
 import com.mjkj.mioa.org.service.OrgUserService;
-import com.mjkj.mioa.web.util.HttpClientUtil;
-import com.mjkj.mioa.web.vo.login.LoginVO;
 
 /**  
  * ClassName:LoginController <br/>  
@@ -44,7 +40,7 @@ public class LoginController
 	@RequestMapping(value="/login")
 	public String login(LoginVO loginvo) throws MioaException
 	{
-		String name = loginvo.getName();
+		String name = loginvo.getUsername();
 		String password = loginvo.getPassword();
 		Md5PasswordEncoder passwordEncoder = new Md5PasswordEncoder();
 		TOrgUser user = orgUserService.findByName(name);
@@ -56,14 +52,14 @@ public class LoginController
 		{
 			throw new MioaException("密码错误");
 		}
-		String code = HttpClientUtil.sendGetRequest("http://localhost:8080/oauth/authorize?client_id=client&response_type=code&redirect_uri=/getToken", null);
-		return "";
+		return "/oauth/authorize?client_id=client&response_type=code&username="+name+"&password="+password+"&redirect_uri=/getToken";
 	}
 	
 	@RequestMapping("/getToken")
-	public void getToken()
+	public void getToken(@PathVariable("code")String code)
 	{
 		System.out.println("111111");
+		System.out.println(code);
 	}
 }
   

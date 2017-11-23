@@ -83,7 +83,7 @@ layui.use(['jquery','common','layer','form','larryMenu'],function(){
 
 
 function login($,params){
-	$.post('/login', params, function (res) {
+	$.post('http://localhost:8080/login', params, function (res) {
         if (res.code==0) {
         	layer.msg('登录成功',{icon:1,time:1000});
             setTimeout(function(){
