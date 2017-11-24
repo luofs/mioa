@@ -42,17 +42,17 @@ public class LoginController
 	{
 		String name = loginvo.getUsername();
 		String password = loginvo.getPassword();
-		Md5PasswordEncoder passwordEncoder = new Md5PasswordEncoder();
-		TOrgUser user = orgUserService.findByName(name);
-		if(user == null)
-		{
-			throw new MioaException("系统无此用户");
-		} 
-		else if(!passwordEncoder.encodePassword(password, null).equals(user.getPassword()))
-		{
-			throw new MioaException("密码错误");
-		}
-		return "/oauth/authorize?client_id=client&response_type=code&username="+name+"&password="+password+"&redirect_uri=/getToken";
+//		Md5PasswordEncoder passwordEncoder = new Md5PasswordEncoder();
+//		TOrgUser user = orgUserService.findByName(name);
+//		if(user == null)
+//		{
+//			throw new MioaException("系统无此用户");
+//		} 
+//		else if(!passwordEncoder.encodePassword(password, null).equals(user.getPassword()))
+//		{
+//			throw new MioaException("密码错误");
+//		}
+		return "/oauth/token?grant_type=password&username=luofs&password=111111";
 	}
 	
 	@RequestMapping("/getToken")

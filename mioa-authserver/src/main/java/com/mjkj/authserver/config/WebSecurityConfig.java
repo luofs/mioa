@@ -70,8 +70,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter
 		//禁用缓存
 		http.headers().cacheControl();
 		//http.addFilterBefore(securityFilter, FilterSecurityInterceptor.class)
-		http.authorizeRequests().antMatchers("/login", "/oauth/**").permitAll().anyRequest().authenticated().and()
-			.httpBasic();
+		http.authorizeRequests().antMatchers("/login", "/oauth/token").permitAll();
 	}
 	
 }

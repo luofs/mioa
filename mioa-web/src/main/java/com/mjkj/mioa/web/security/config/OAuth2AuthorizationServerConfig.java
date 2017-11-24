@@ -15,10 +15,9 @@ import java.util.concurrent.TimeUnit;
 import javax.sql.DataSource;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Primary;
 import org.springframework.core.env.Environment;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -29,6 +28,7 @@ import org.springframework.security.oauth2.config.annotation.web.configuration.A
 import org.springframework.security.oauth2.config.annotation.web.configuration.EnableAuthorizationServer;
 import org.springframework.security.oauth2.config.annotation.web.configurers.AuthorizationServerEndpointsConfigurer;
 import org.springframework.security.oauth2.config.annotation.web.configurers.AuthorizationServerSecurityConfigurer;
+import org.springframework.security.oauth2.provider.token.AuthorizationServerTokenServices;
 import org.springframework.security.oauth2.provider.token.DefaultTokenServices;
 import org.springframework.security.oauth2.provider.token.TokenEnhancer;
 import org.springframework.security.oauth2.provider.token.TokenEnhancerChain;
@@ -74,29 +74,36 @@ public class OAuth2AuthorizationServerConfig extends AuthorizationServerConfigur
 			{
 				return authenticationProvider.authenticate(authentication);
 			}
-		});
+		}).tokenServices(tokenServices());
 		// 配置TokenServices参数
-        DefaultTokenServices tokenServices = new DefaultTokenServices();
-        tokenServices.setTokenStore(endpoints.getTokenStore());
-        tokenServices.setSupportRefreshToken(true);
-        tokenServices.setClientDetailsService(endpoints.getClientDetailsService());
-        tokenServices.setTokenEnhancer(endpoints.getTokenEnhancer());
-        tokenServices.setAccessTokenValiditySeconds( (int) TimeUnit.DAYS.toSeconds(30)); // 30天
-        endpoints.tokenServices(tokenServices);
+//        DefaultTokenServices tokenServices = new DefaultTokenServices();
+//        tokenServices.setSupportRefreshToken(true);
+//        tokenServices.setClientDetailsService(endpoints.getClientDetailsService());
+//        tokenServices.setTokenEnhancer(endpoints.getTokenEnhancer());
+//        tokenServices.setAccessTokenValiditySeconds( (int) TimeUnit.DAYS.toSeconds(30)); // 30天
+//        endpoints.tokenServices(tokenServices);
 	}
+	
+	@Primary
+    @Bean
+    public AuthorizationServerTokenServices tokenServices() {
+        DefaultTokenServices defaultTokenServices = new DefaultTokenServices();
+        defaultTokenServices.setAccessTokenValiditySeconds(-1);//用不过期
+        defaultTokenServices.setRefreshTokenValiditySeconds(-1);
+        defaultTokenServices.setSupportRefreshToken(true);
+        defaultTokenServices.setReuseRefreshToken(false);
+        defaultTokenServices.setTokenStore(tokenStore());
+        return defaultTokenServices;
+    }
 	
 	@Override
     public void configure(final AuthorizationServerSecurityConfigurer oauthServer) throws Exception {
-        oauthServer.tokenKeyAccess("permitAll()").checkTokenAccess("isAuthenticated()");
+        oauthServer.tokenKeyAccess("permitAll()").checkTokenAccess("isAuthenticated()").allowFormAuthenticationForClients();
     }
 	
 	@Override
     public void configure(final ClientDetailsServiceConfigurer clients) throws Exception {
-		clients.jdbc(dataSource())
-		.withClient("client") // client_id
-        .secret("secret") // client_secret
-        .authorizedGrantTypes("authorization_code") // 该client允许的授权类型
-        .scopes("app"); // 允许的授权范围;
+		clients.jdbc(dataSource()); // 允许的授权范围;
 	} 
 	
 	@Bean

@@ -10,15 +10,16 @@
 package com.mjkj.mioa.web.security.config;   
 
 import java.util.Collection;
-import org.springframework.beans.factory.annotation.Autowired;
+
 import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.authentication.encoding.Md5PasswordEncoder;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.core.GrantedAuthority;
-import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
+
 import com.mjkj.mioa.exception.MioaException;
 import com.mjkj.mioa.org.entity.TOrgUser;
 import com.mjkj.mioa.org.service.OrgUserService;
@@ -64,7 +65,10 @@ public class mioaAuthenticationProvider implements AuthenticationProvider
 		}
 		SecurityUser securityUser = new SecurityUser(user);
 		Collection<? extends GrantedAuthority> authorities = securityUser.getAuthorities();
-	     return new UsernamePasswordAuthenticationToken(securityUser, password, authorities);
+		Md5PasswordEncoder passwordEncoder = new Md5PasswordEncoder();
+		UsernamePasswordAuthenticationToken authenticate = new UsernamePasswordAuthenticationToken(username, passwordEncoder.encodePassword(password, null), authorities);
+		//authenticate.setDetails(new CustomUserService());
+	     return authenticate;
 	}
 
 	@Override
