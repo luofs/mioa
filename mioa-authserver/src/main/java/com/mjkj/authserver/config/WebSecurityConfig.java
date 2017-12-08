@@ -9,19 +9,24 @@
   
 package com.mjkj.authserver.config;   
 
+import javax.sql.DataSource;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.encoding.Md5PasswordEncoder;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.web.authentication.rememberme.JdbcTokenRepositoryImpl;
 
+import com.mjkj.authserver.handler.LoginSuccessHandler;
 import com.mjkj.authserver.service.CustomUserService;
 
 /**  
@@ -40,6 +45,9 @@ import com.mjkj.authserver.service.CustomUserService;
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter
 {
 
+	@Autowired 
+    @Qualifier("dataSource")
+    private DataSource dataSource;
 	
 	@Bean
 	UserDetailsService customUserService()
@@ -63,14 +71,36 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter
 	@Override
 	protected void configure(HttpSecurity http) throws Exception
 	{
+		 http.formLogin().loginPage("/login").permitAll().failureUrl("/error").successHandler(loginSuccessHandler())
+		 .and().authorizeRequests()
+		 		.antMatchers("/images/**", "/checkcode", "/scripts/**", "/styles/**").permitAll()
+                .anyRequest().authenticated()
+                .and().sessionManagement().sessionCreationPolicy(SessionCreationPolicy.NEVER)
+                .and().exceptionHandling().accessDeniedPage("/deny")
+                .and().rememberMe().tokenValiditySeconds(86400).tokenRepository(tokenRepository());
 		//使用JWT，关闭csrf
 		http.csrf().disable();
-		//采用token方式，不需要session
-		http.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
 		//禁用缓存
 		http.headers().cacheControl();
-		//http.addFilterBefore(securityFilter, FilterSecurityInterceptor.class)
-		http.authorizeRequests().antMatchers("/login", "/oauth/token").permitAll();
+	}
+	
+	@Bean
+    public LoginSuccessHandler loginSuccessHandler(){
+        return new LoginSuccessHandler();
+    }
+	
+	@Bean
+    public JdbcTokenRepositoryImpl tokenRepository(){
+        JdbcTokenRepositoryImpl jtr = new JdbcTokenRepositoryImpl();
+        jtr.setDataSource(dataSource);
+        return jtr;
+    }
+	
+	@Override
+	public void configure(WebSecurity web) throws Exception
+	{
+		//解决静态资源被拦截的问题
+	     web.ignoring().antMatchers("/common/**","/backstage/**/*.js","/backstage/**/*.css","/backstage/**/*.jpg","/backstage/**/*.gif","/backstage/**/*.png");
 	}
 	
 }

@@ -37,29 +37,21 @@ public class LoginController
 	@Autowired
 	OrgUserService orgUserService;
 
-	@RequestMapping(value="/login")
-	public String login(LoginVO loginvo) throws MioaException
+	@RequestMapping("/login")
+	public String login() throws MioaException
 	{
-		String name = loginvo.getUsername();
-		String password = loginvo.getPassword();
-//		Md5PasswordEncoder passwordEncoder = new Md5PasswordEncoder();
-//		TOrgUser user = orgUserService.findByName(name);
-//		if(user == null)
-//		{
-//			throw new MioaException("系统无此用户");
-//		} 
-//		else if(!passwordEncoder.encodePassword(password, null).equals(user.getPassword()))
-//		{
-//			throw new MioaException("密码错误");
-//		}
-		return "/oauth/token?grant_type=password&username=luofs&password=111111";
+		return "login";
 	}
 	
-	@RequestMapping("/getToken")
-	public void getToken(@PathVariable("code")String code)
-	{
-		System.out.println("111111");
-		System.out.println(code);
+	@RequestMapping("/")
+	public String index() throws MioaException{
+		return "index";
 	}
+	
+	@RequestMapping("/me")
+	public String getUserMsg() throws MioaException{
+		return "index";
+	}
+	
 }
   
