@@ -40,7 +40,7 @@ $(function() {
         $(this).parent('li').find('input').val('').focus();
     });
 
-    if ($("#errorMsg").val() != '') {
+    if ($("#errorMsg").length>0 && $("#errorMsg").val() != '') {
         alert($("#errorMsg").val());
     }
 
