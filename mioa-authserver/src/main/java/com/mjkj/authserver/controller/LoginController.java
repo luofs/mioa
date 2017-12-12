@@ -48,10 +48,5 @@ public class LoginController
 		return "index";
 	}
 	
-	@RequestMapping("/me")
-	public String getUserMsg() throws MioaException{
-		return "index";
-	}
-	
 }
   
