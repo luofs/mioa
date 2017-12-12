@@ -47,7 +47,7 @@ import com.mjkj.authserver.service.CustomUserService;
  * @see        OAuth认证配置类，将token存储在数据库
  */
 @Configuration
-@EnableAuthorizationServer
+//@EnableAuthorizationServer
 public class OAuth2AuthorizationServerConfig extends AuthorizationServerConfigurerAdapter
 {
 	@Autowired
