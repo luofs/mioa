@@ -24,7 +24,6 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.oauth2.config.annotation.configurers.ClientDetailsServiceConfigurer;
 import org.springframework.security.oauth2.config.annotation.web.configuration.AuthorizationServerConfigurerAdapter;
-import org.springframework.security.oauth2.config.annotation.web.configuration.EnableAuthorizationServer;
 import org.springframework.security.oauth2.config.annotation.web.configurers.AuthorizationServerEndpointsConfigurer;
 import org.springframework.security.oauth2.config.annotation.web.configurers.AuthorizationServerSecurityConfigurer;
 import org.springframework.security.oauth2.provider.ClientDetailsService;
@@ -47,7 +46,6 @@ import com.mjkj.authserver.service.CustomUserService;
  * @see        OAuth认证配置类，将token存储在数据库
  */
 @Configuration
-//@EnableAuthorizationServer
 public class OAuth2AuthorizationServerConfig extends AuthorizationServerConfigurerAdapter
 {
 	@Autowired
@@ -92,7 +90,7 @@ public class OAuth2AuthorizationServerConfig extends AuthorizationServerConfigur
 	
 	@Override
     public void configure(final ClientDetailsServiceConfigurer clients) throws Exception {
-		clients.jdbc(dataSource());
+		clients.jdbc(dataSource());//表结构详见http://andaily.com/spring-oauth-server/db_table_description.html
 //		.withClient("client") // client_id
 //        .secret("secret") // client_secret
 //        .authorizedGrantTypes("authorization_code") // 该client允许的授权类型

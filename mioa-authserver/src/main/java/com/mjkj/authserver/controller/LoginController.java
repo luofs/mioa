@@ -9,15 +9,14 @@
   
 package com.mjkj.authserver.controller;   
 
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.authentication.encoding.Md5PasswordEncoder;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import com.mjkj.authserver.vo.LoginVO;
 import com.mjkj.mioa.exception.MioaException;
-import com.mjkj.mioa.org.entity.TOrgUser;
 import com.mjkj.mioa.org.service.OrgUserService;
 
 /**  
@@ -42,6 +41,13 @@ public class LoginController
 	{
 		return "login";
 	}
+	
+	 @RequestMapping("/signout")
+	 public String signout(HttpServletRequest request) throws MioaException, ServletException
+	 {
+	        request.logout();
+	        return "tologin";
+	 }
 	
 	@RequestMapping("/")
 	public String index() throws MioaException{

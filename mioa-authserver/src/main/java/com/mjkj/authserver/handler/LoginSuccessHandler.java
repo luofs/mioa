@@ -21,7 +21,6 @@ public class LoginSuccessHandler extends SavedRequestAwareAuthenticationSuccessH
 	public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response,
 			Authentication authentication) throws IOException, ServletException {
 		TOrgUser userDetails = (TOrgUser) authentication.getPrincipal();
-
 		log.info("登录用户: " + userDetails.getRealname() + "login " + request.getContextPath());
 		log.info("IP: " + getIpAddress(request));
 		super.onAuthenticationSuccess(request, response, authentication);

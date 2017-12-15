@@ -21,7 +21,6 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.stereotype.Service;
 
 import com.mjkj.authserver.entry.SecurityUser;
-import com.mjkj.authserver.service.CustomUserService;
 import com.mjkj.mioa.exception.MioaException;
 import com.mjkj.mioa.org.entity.TOrgUser;
 import com.mjkj.mioa.org.service.OrgUserService;
