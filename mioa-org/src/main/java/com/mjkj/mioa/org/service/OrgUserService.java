@@ -29,6 +29,8 @@ public interface OrgUserService
 	
 	TOrgUser findByName(String name) throws MioaException;
 	
+	TOrgUser findById(String id) throws MioaException;
+	
 	TOrgUser addUser(TOrgUser user) throws MioaException;
 	
 	TOrgUser updateUser(TOrgUser user) throws MioaException;

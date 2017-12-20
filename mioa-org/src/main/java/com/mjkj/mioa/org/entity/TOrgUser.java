@@ -81,6 +81,19 @@ public class TOrgUser{
 			}
 		)
 	private List<TOrgRole> TOrgRoles;
+	
+	//bi-directional many-to-many association to TOrgRole
+	@ManyToMany(fetch=FetchType.LAZY)
+	@JoinTable(
+		name="t_user_menu"
+		, joinColumns={
+			@JoinColumn(name="userid")
+			}
+		, inverseJoinColumns={
+			@JoinColumn(name="menuid")
+			}
+		)
+	private List<TMenu> TMenus;
 
 	public TOrgUser() {
 	}
@@ -203,6 +216,17 @@ public class TOrgUser{
 
 	public void setTOrgRoles(List<TOrgRole> TOrgRoles) {
 		this.TOrgRoles = TOrgRoles;
+	}
+	
+	public List<TMenu> getTMenus()
+	{
+		return TMenus;
+	}
+
+	
+	public void setTMenus(List<TMenu> tMenus)
+	{
+		TMenus = tMenus;
 	}
 
 	public byte getDisable()

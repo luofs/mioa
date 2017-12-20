@@ -60,6 +60,16 @@ public class OrgUserServiceImpl implements OrgUserService
 		}
 		return orgUserRepository.findByName(name);
 	}
+	
+	@Override
+	public TOrgUser findById(String userid) throws MioaException
+	{
+		if(StringUtils.isEmpty(userid))
+		{
+			throw new MioaException("param name is null");
+		}
+		return orgUserRepository.findOne(userid);
+	}
 
 	@Override
 	public TOrgUser addUser(TOrgUser user) throws MioaException
