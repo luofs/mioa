@@ -36,8 +36,8 @@ import ch.qos.logback.classic.Logger;
  * @see        
  */
 @Aspect
-@Order(0)
 @Configuration
+@Order(0)
 public class WebLogAspect
 {
 	private Logger log = (Logger) LoggerFactory.getLogger(this.getClass());
@@ -52,7 +52,7 @@ public class WebLogAspect
      * ~ 第四个 * 任意方法
      * ~ .. 匹配任意数量的参数.
      */
-	@Pointcut(" execution ( public * com.mjkj.mioa.web.demo..*.*(..))")
+	@Pointcut(" execution ( public * com.mjkj.mioa.web.controller..*.*(..))")
 	public void webLog()
 	{
 		

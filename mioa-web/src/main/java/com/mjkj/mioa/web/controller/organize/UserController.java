@@ -10,8 +10,8 @@
 package com.mjkj.mioa.web.controller.organize;  
 
 import java.lang.reflect.InvocationTargetException;
-import java.security.Principal;
 import java.util.List;
+
 import org.apache.commons.beanutils.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+
 import com.mjkj.mioa.common.result.MioaResult;
 import com.mjkj.mioa.common.result.MioaResultGenerator;
 import com.mjkj.mioa.exception.MioaException;

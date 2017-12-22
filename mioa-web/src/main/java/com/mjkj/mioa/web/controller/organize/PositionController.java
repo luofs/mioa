@@ -11,14 +11,11 @@ package com.mjkj.mioa.web.controller.organize;
 
 import java.util.List;
 
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
-
-import ch.qos.logback.classic.Logger;
 
 import com.mjkj.mioa.common.result.MioaResult;
 import com.mjkj.mioa.common.result.MioaResultGenerator;
@@ -39,8 +36,6 @@ import com.mjkj.mioa.web.vo.position.PositionVO;
 @RequestMapping("/position")
 public class PositionController
 {
-	
-	private Logger log = (Logger) LoggerFactory.getLogger(PositionController.class);
 	
 	@Autowired
 	private OrgPositionService positionService;
@@ -64,7 +59,7 @@ public class PositionController
 		 return result;
 	}
 	
-	@RequestMapping(value="deletePosition", method=RequestMethod.POST)
+	@RequestMapping(value="/deletePosition", method=RequestMethod.POST)
 	public MioaResult deletePosition(String id) throws MioaException
 	{
 		positionService.removePosition(id);

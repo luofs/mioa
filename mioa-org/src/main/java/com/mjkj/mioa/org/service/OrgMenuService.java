@@ -75,15 +75,6 @@ public interface OrgMenuService
 	 */
 	public List<TMenu> findAllMenu(String domain) throws MioaException;
 	
-	/**
-	 * 查询用户菜单
-	 * @author fsluo  
-	 * @param domain
-	 * @return  List<TMenu>
-	 * @throws MioaException  
-	 * @since JDK 1.7
-	 */
-	public List<TMenu> findUserMen(String userid, String domain) throws MioaException;
 	
 	List<TMenu> findRoleMenu(String roleid) throws MioaException;
 }

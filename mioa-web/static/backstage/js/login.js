@@ -95,25 +95,4 @@ function login($,params){alert(1);
              });
         }
     }, 'json');
-//	oauth2.login(
-//		    '/oauth/token',
-//		      {
-//		      params,
-//		      "grant_type" : "password",
-//		      "client_id":"fs.com",
-//		      "secret":"fs"
-//		      },
-//		    function (response) {alert(2);
-//		        console.log(response);
-//		        alert(response.access_token);
-//		      oauth2.cookie.set('authToken', response.access_token)
-//		      //oauth2.cookie.set('userId', response.apiUser.id)
-//		      oauth2.cookie.set('email', email)
-//		      callback()
-//
-//		    },
-//		    function(jqXHR, textStatus) {
-//		      //callback(jqXHR)
-//		    	alert(textStatus)
-//		    })
 }
