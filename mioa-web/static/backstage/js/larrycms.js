@@ -21,7 +21,7 @@ layui.use(['jquery','larryElem','layer','common','form','larryMenu','larryTab'],
     // 方法1：
 	larryTab.menuSet({
 		  tyep:'GET',
-		  url: 'datas/data.json?t='+Math.random(),
+		  url: '/user/findUserMenu',
 		  topFilter: 'TopMenu',
 		  lefFilter: 'LarrySide'
 	});
