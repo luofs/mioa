@@ -19,25 +19,25 @@ layui.use(['jquery','larryElem','layer','common','form','larryMenu','larryTab'],
 
     // 菜单初始化
     // 方法1：
-	larryTab.menuSet({
+	/*larryTab.menuSet({
 		  tyep:'GET',
-		  url: '/user/findUserMenu',
+		  url: '/mioa/user/findUserMenu?userid=1',
 		  topFilter: 'TopMenu',
 		  lefFilter: 'LarrySide'
 	});
-    larryTab.menu();
+    larryTab.menu();*/
     // 方法2：
-    /*$.ajaxSettings.async = false;
-	$.getJSON('../datas/data.json?t=' + Math.random(), function(menuData) {
+    $.ajaxSettings.async = false;
+	$.getJSON('/mioa/user/findUserMenu?userid=1', function(menuData) {
 		larryTab.menuSet({
-			data: menuData,
+			data: menuData.data,
 			spreadOne: false,
 			topFilter: 'TopMenu',
 			lefFilter: 'LarrySide'
 		});
 		larryTab.menu();
 	});
-    $.ajaxSettings.async = true;*/
+    $.ajaxSettings.async = true;
     // 1监听导航菜单点击事件 请注释2
     $('#larry_top_menu li').on('click',function(){
     	 var group = $(this).children('a').data('group');

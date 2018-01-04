@@ -33,6 +33,8 @@ public class TMenu implements Serializable {
 	private String title;
 
 	private String url;
+	
+	private String icon;
 
 	public TMenu() {
 	}
@@ -91,6 +93,16 @@ public class TMenu implements Serializable {
 
 	public void setUrl(String url) {
 		this.url = url;
+	}
+
+	public String getIcon()
+	{
+		return icon;
+	}
+
+	public void setIcon(String icon)
+	{
+		this.icon = icon;
 	}
 
 }

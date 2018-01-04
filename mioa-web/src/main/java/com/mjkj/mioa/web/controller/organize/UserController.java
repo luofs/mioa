@@ -26,6 +26,8 @@ import com.mjkj.mioa.exception.MioaException;
 import com.mjkj.mioa.org.entity.TMenu;
 import com.mjkj.mioa.org.entity.TOrgUser;
 import com.mjkj.mioa.org.service.OrgUserService;
+import com.mjkj.mioa.web.util.MenuTreeBuilder;
+import com.mjkj.mioa.web.vo.menu.MenuVO;
 import com.mjkj.mioa.web.vo.user.UserVO;
 
 /**  
@@ -105,9 +107,11 @@ public class UserController
 	{
 		TOrgUser user = orgUserService.findById(userid);
 		List<TMenu> menuList = user.getTMenus();
-		MioaResult result = MioaResultGenerator.succeResult(menuList);
-		result.setCount(menuList.size());
+		List<MenuVO> menuResult = MenuTreeBuilder.buildMenuTree(menuList);
+		MioaResult result = MioaResultGenerator.succeResult(menuResult);
+		result.setCount(menuResult.size());
 		return result;
 	}
+
 }
   
