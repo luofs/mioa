@@ -21,6 +21,7 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.stereotype.Service;
 
 import com.mjkj.authserver.entry.SecurityUser;
+import com.mjkj.authserver.service.CustomUserService;
 import com.mjkj.mioa.exception.MioaException;
 import com.mjkj.mioa.org.entity.TOrgUser;
 import com.mjkj.mioa.org.service.OrgUserService;
@@ -67,7 +68,7 @@ public class MioaAuthenticationProvider implements AuthenticationProvider
 		Collection<? extends GrantedAuthority> authorities = securityUser.getAuthorities();
 		Md5PasswordEncoder passwordEncoder = new Md5PasswordEncoder();
 		UsernamePasswordAuthenticationToken authenticate = new UsernamePasswordAuthenticationToken(username, passwordEncoder.encodePassword(password, null), authorities);
-		//authenticate.setDetails(new CustomUserService());
+		authenticate.setDetails(new CustomUserService());
 	     return authenticate;
 	}
 

@@ -13,8 +13,12 @@ import java.security.Principal;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+
+import com.mjkj.mioa.org.entity.TOrgUser;
 
 /**  
  * ClassName:UserController   
@@ -32,6 +36,10 @@ public class UserController
 	public Map<String, String> user(Principal principal) {
 	  Map<String, String> map = new LinkedHashMap<>();
 	  map.put("name", principal.getName());
+	  Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+	  TOrgUser orgUser = (TOrgUser)auth.getPrincipal();
+	  map.put("id", orgUser.getId());
+	  map.put("domain", orgUser.getDomain());
 	  return map;
 	}
 }

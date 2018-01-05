@@ -71,8 +71,9 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter
 	@Override
 	protected void configure(AuthenticationManagerBuilder auth) throws Exception
 	{
-		auth.userDetailsService(customUserService())
-				.passwordEncoder(new Md5PasswordEncoder());
+		auth.userDetailsService(customUserService()).passwordEncoder(new Md5PasswordEncoder());
+		//remember me
+        auth.eraseCredentials(false);
 	}
 	
 	@Override

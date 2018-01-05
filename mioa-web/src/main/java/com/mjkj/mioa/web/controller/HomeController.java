@@ -9,6 +9,10 @@
   
 package com.mjkj.mioa.web.controller;   
 
+import java.security.Principal;
+
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -27,8 +31,13 @@ public class HomeController
 {
 
 	@RequestMapping("/")
-	public String index()
+	public String index(Principal user)
 	{
+		user.getName();
+//		String result = HttpClientUtil.sendPostRequestByJava("http://localhost:8080/me", "");
+//		System.out.println(result);
+		 Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+		 auth.getPrincipal();
 		return "index";
 	}
 }

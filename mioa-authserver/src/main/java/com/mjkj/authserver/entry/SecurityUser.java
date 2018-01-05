@@ -13,6 +13,7 @@ import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
+
 import org.apache.commons.beanutils.BeanUtils;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -68,13 +69,13 @@ public class SecurityUser extends TOrgUser implements UserDetails
 	@Override
 	public String getUsername()
 	{
-		return super.getName();
+		return this.getName();
 	}
 	
 	@Override
 	public String getPassword()
 	{
-		return super.getPassword();
+		return this.getPassword();
 	}
 
 	@Override
@@ -99,6 +100,16 @@ public class SecurityUser extends TOrgUser implements UserDetails
 	public boolean isEnabled()
 	{
 		return true;
+	}
+	
+	@Override
+	public boolean equals(Object o) {
+		return o instanceof SecurityUser ? this.getUsername().equals(((SecurityUser) o).getUsername()) : false;
+	}
+
+	@Override
+	public int hashCode() {
+		return this.getUsername().hashCode();
 	}
 
 

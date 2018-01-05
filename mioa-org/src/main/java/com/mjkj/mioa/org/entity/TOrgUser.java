@@ -1,5 +1,6 @@
 package com.mjkj.mioa.org.entity;
 
+import java.io.Serializable;
 import java.sql.Timestamp;
 import java.util.List;
 
@@ -23,8 +24,10 @@ import org.hibernate.annotations.GenericGenerator;
 @Entity
 @Table(name="t_org_user")
 @NamedQuery(name="TOrgUser.findAll", query="SELECT t FROM TOrgUser t")
-public class TOrgUser{
+public class TOrgUser implements Serializable{
 
+	private static final long serialVersionUID = 1L;
+	
 	@Id
 	@GeneratedValue(generator="uuid")
 	@GenericGenerator(name="uuid", strategy="uuid")
@@ -238,6 +241,8 @@ public class TOrgUser{
 	{
 		this.disable = disable;
 	}
+
+	
 	
 
 }
