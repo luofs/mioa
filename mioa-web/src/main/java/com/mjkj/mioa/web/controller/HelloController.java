@@ -9,14 +9,8 @@
   
 package com.mjkj.mioa.web.controller;  
 
-import java.security.Principal;
-
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-
-import com.mjkj.mioa.org.entity.TOrgUser;
 
 /**  
  * ClassName:HelloController   
@@ -30,11 +24,8 @@ import com.mjkj.mioa.org.entity.TOrgUser;
 public class HelloController
 {
 	 @RequestMapping("/hello")
-	  public String home(Principal user) {
-		 Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-		 TOrgUser orgUser = (TOrgUser)auth.getPrincipal();
-		 System.out.println("=============="+orgUser.getId());
-		 return "Hello " + user.getName();
+	  public String home() {
+		 return "Hello ";
 	  }
 }
   

@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>职位选择</title>
+	<meta name="keywords" content="" />
+    <meta name="description" content="LarryCMS Version:1.09" />
+	<meta name="Author" content="larry" />
+	<meta name="renderer" content="webkit">	
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">	
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+	<meta name="apple-mobile-web-app-status-bar-style" content="black">	
+	<meta name="apple-mobile-web-app-capable" content="yes">	
+	<meta name="format-detection" content="telephone=no">	
+	<link rel="Shortcut Icon" href="/favicon.ico" />
+	<!-- load css -->
+	<link rel="stylesheet" type="text/css" href="../../../common/frame/layui/css/layui.css" media="all">
+    <link rel="stylesheet" type="text/css" href="../../../common/css/gobal.css" media="all">
+    <link rel="stylesheet" type="text/css" href="../../../common/css/animate.css" media="all">
+    <link rel="stylesheet" type="text/css" href="../../css/common.css" media="all">
+    <link rel="stylesheet" type="text/css" href="../../../zTree/css/zTreeStyle/zTreeStyle.css" media="all">
+    <style type="text/css">
+    .layui-form-checkbox{ margin-bottom: 10px}
+    </style>
+</head>
+</head>
+<body>
+<div class="layui-fluid larry-wrapper">
+<form id="selectPositionForm" class="layui-form">
+    <div class="layui-row layui-col-space20">
+            <!-- 系统概览及升级日志 -->
+		<div class="layui-col-xs6 layui-col-sm6 layui-col-md6 layui-col-lg6">
+			<section class="larry-panel" style="height: 250px">
+                <div class="larry-panel-body">
+                    <ul id="orgtree" class="ztree" style="width:260px; overflow:auto;"></ul>
+                </div>
+			</section>
+		</div>
+		<div class="layui-col-xs6 layui-col-sm6 layui-col-md6 layui-col-lg6" >
+			<section class="larry-panel" style="height: 250px">
+                <div class="larry-panel-body" id="orgPositionListDiv">
+                </div>
+            </section>
+		</div>
+		<div class="layui-col-xs12 layui-col-sm12 layui-col-md12 layui-col-lg12">
+			<fieldset class="layui-elem-field layui-field-title">
+			    <legend>已选职位列表</legend>
+			</fieldset>
+			<div style="min-height: 150px; max-height: 150px; overflow:auto;" id="selectedPostListDiv" class="layui-btn-container">
+				
+			</div>
+		</div>
+	</div>
+	</form>
+</div>
+
+
+
+<!-- 加载js文件 -->
+<script type="text/javascript" src="../../../common/frame/layui/layui.js"></script> 
+<script type="text/javascript" src="../../js/common.js"></script> 
+<script type="text/javascript" src="../../../common/plus/jquery-1.12.4.min.js"></script>
+<script type="text/javascript" src="../../../zTree/js/jquery.ztree.all.js"></script>
+<script type="text/javascript" src="../../js/common/selectPosition.js"></script>
+</body>
+</html>

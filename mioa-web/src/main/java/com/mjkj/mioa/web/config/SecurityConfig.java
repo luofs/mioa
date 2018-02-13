@@ -29,6 +29,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 				.permitAll().anyRequest().authenticated()
 				.and().logout().logoutUrl("/logout").permitAll().logoutSuccessUrl("/tosignout")
 				.and().exceptionHandling().accessDeniedPage("/deny");
+		http.headers().frameOptions().sameOrigin();//解决浏览器报Load denied by X-Frame-Options问题
+		http.csrf().disable();
 	}
 
 	private Filter csrfHeaderFilter() {

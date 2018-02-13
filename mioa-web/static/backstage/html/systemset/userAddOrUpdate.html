@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>用户新增</title>
+	<meta name="keywords" content="" />
+    <meta name="description" content="LarryCMS Version:1.09" />
+	<meta name="Author" content="larry" />
+	<meta name="renderer" content="webkit">	
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">	
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+	<meta name="apple-mobile-web-app-status-bar-style" content="black">	
+	<meta name="apple-mobile-web-app-capable" content="yes">	
+	<meta name="format-detection" content="telephone=no">	
+	<link rel="Shortcut Icon" href="/favicon.ico" />
+	<!-- load css -->
+	<link rel="stylesheet" type="text/css" href="../../../common/frame/layui/css/layui.css" media="all">
+    <link rel="stylesheet" type="text/css" href="../../../common/css/gobal.css" media="all">
+    <link rel="stylesheet" type="text/css" href="../../../common/css/animate.css" media="all">
+    <link rel="stylesheet" type="text/css" href="../../css/common.css" media="all">
+    <link rel="stylesheet" type="text/css" href="../../css/sys.css" media="all">
+    <style type="text/css">
+    	#selectPostListUL>li{
+    		float: left; padding-right:5px;padding-bottom:5px
+    	}
+    </style>
+</head>
+</head>
+<body>
+<div class="larry-grid larry-wrapper">
+<form id="createUserForm" class="layui-form">
+	<input type="hidden" name="id">
+  <div class="layui-form-item">
+    <label class="layui-form-label">姓名</label>
+    <div class="layui-input-block">
+      <input type="text" name="realname" required  lay-verify="required" placeholder="请输入姓名" autocomplete="off" class="layui-input">
+    </div>
+  </div>
+  <div class="layui-form-item">
+    <label class="layui-form-label">账号</label>
+    <div class="layui-input-inline">
+      <input type="text" name="name" required lay-verify="required" placeholder="请输入账号" autocomplete="off" class="layui-input">
+    </div>
+    <div class="layui-form-mid layui-word-aux">默认初始密码同账号</div>
+  </div>
+  <div class="layui-form-item">
+    <label class="layui-form-label">岗位</label>
+    <div class="layui-input-inline">
+      <input type="text" name="position"  placeholder="请选择岗位" autocomplete="off" class="layui-input">
+    </div>
+    <div class="layui-word-aux"><button class="layui-btn layui-btn-primary layui-btn-sm" id="selectPositonBtn"><i class="icon larry-icon" >&#xe7c6;</i></button></div>
+  </div>
+  <div class="layui-form-item" style="display: none;" id="selectPostListDiv">
+    <label class="layui-form-label"></label>
+    <div class="layui-input-block">
+    	<ul id="selectPostListUL">
+		</ul>
+    </div>
+  </div>
+  <div class="layui-form-item">
+    <label class="layui-form-label">邮箱</label>
+    <div class="layui-input-block">
+      <input type="text" name="email"  placeholder="请输入邮箱" autocomplete="off" class="layui-input">
+    </div>
+  </div>
+  <div class="layui-form-item">
+    <label class="layui-form-label">座机</label>
+    <div class="layui-input-block">
+      <input type="text" name="telephone"  placeholder="请输入座机" autocomplete="off" class="layui-input">
+    </div>
+  </div>
+  
+
+  <div class="layui-form-item">
+    <div class="layui-input-block">
+      <button class="layui-btn" lay-submit lay-filter="createUserForm">提交</button>
+      <button class="layui-btn layui-btn-primary">取消</button>
+    </div>
+  </div>
+</form>
+ 
+</div>
+<!-- 加载js文件 -->
+<script type="text/javascript" src="../../../common/frame/layui/layui.js"></script> 
+<script type="text/javascript" src="../../js/common.js"></script> 
+
+<script>
+layui.use([ 'mioaTool','layer','form'], function(){
+  var form = layui.form,
+  $ = layui.$,
+  layer = parent.layer === undefined ? layui.layer : parent.layer,
+  mioaTool = layui.mioaTool;
+  //监听提交
+  form.on('submit(createUserForm)', function(data){
+	mioaTool.ajaxSubmit("http://127.0.0.1:8081/mioa/user/addUser", data.field);
+    return false;
+  });
+  $("#selectPositonBtn").click(function(){
+	  mioaTool.openPositionSelectWin(function(layero, index){
+		  var iframeWin = window.frames[layero.find('iframe')[0]['name']]; 
+		  var selectPosit = layero.find('iframe')[0].contentWindow.selectPosit;
+		  $("#selectPostListUL").empty();
+		  var show = false;
+		  for(var i in selectPosit){
+			  $("#selectPostListUL").append("<li><input type='hidden' name='selectPostIds' value='"+selectPosit[i].selectPositId+"'><button class='layui-btn layui-btn-primary'>"+selectPosit[i].selectPositName+"<span class='layui-badge'>X</span></button></li>");
+			  show = true;
+		  }
+		  if(show){
+			  $("#selectPostListDiv").show();
+		  }
+		  layer.close(index);
+	  }, null, function(){});
+  });
+  $("#selectPostListUL").find("span").click(function(){
+	  $(this).parent("li").remove();
+	  if($("#selectPostListUL").children("li").length == 0){
+		  $("#selectPostListDiv").hide();
+	  }
+  });
+  
+});
+</script>
+</body>
+</html>

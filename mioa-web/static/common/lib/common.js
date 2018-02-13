@@ -319,7 +319,7 @@ layui.define(['element','layer','jquery'],function(exports){
                     btn: ['OK']
                 });
             });
-        }
+        },
    };
    /**
     * @description html处理函数

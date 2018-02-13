@@ -24,7 +24,7 @@ public class MioaResult
 	
 	private int code;
 	private String msg;
-	private int count;
+	private long count;
 	private Object data;
 	
 	public MioaResult()
@@ -71,11 +71,11 @@ public class MioaResult
 	{
 		this.msg = msg;
 	}
-	public int getCount()
+	public long getCount()
 	{
 		return count;
 	}
-	public void setCount(int count)
+	public void setCount(long count)
 	{
 		this.count = count;
 	}

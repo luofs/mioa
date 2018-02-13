@@ -12,6 +12,8 @@ package com.mjkj.mioa.org.dao;
 import java.util.List;
 
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import com.mjkj.mioa.org.entity.TOrgDepartment;
@@ -30,7 +32,12 @@ public interface OrgDepartmentRepository extends JpaRepository<TOrgDepartment, S
 
 	TOrgDepartment findDepartmentByNameAndParentid(String name, String parentid);
 
-	List<TOrgDepartment> findAllByDomain(String domain);
+	List<TOrgDepartment> findAllByDomain(@Param("domain")String domain);
+
+	TOrgDepartment findDepartmentByParentid(String parentId);
+
+	@Query("select t1.name from TOrgDepartment t1, TOrgDepartment t2 where t1.id = t2.parentid and t2.id = :id")
+	String findParentDeptName(@Param("id")String id);
 
 }
   

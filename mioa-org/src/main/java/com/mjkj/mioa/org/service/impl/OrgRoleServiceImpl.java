@@ -9,10 +9,22 @@
   
 package com.mjkj.mioa.org.service.impl;   
 
+import java.util.ArrayList;
 import java.util.List;
+
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Example;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
+import org.springframework.data.domain.Sort.Direction;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
+
 import com.mjkj.mioa.exception.MioaException;
 import com.mjkj.mioa.org.dao.OrgRoleRepository;
 import com.mjkj.mioa.org.entity.TOrgRole;
@@ -34,6 +46,8 @@ public class OrgRoleServiceImpl implements OrgRoleService
 	
 	@Autowired
 	private OrgRoleRepository orgRoleRepository;
+	@PersistenceContext
+	EntityManager em;
 
 	@Override
 	public List<TOrgRole> findAllRoleByDomain(String domain) throws MioaException
@@ -43,6 +57,50 @@ public class OrgRoleServiceImpl implements OrgRoleService
 			throw new MioaException("参数不完整");
 		}
 		return orgRoleRepository.findRoleByDomain(domain);
+	}
+
+	@Override
+	public Page<TOrgRole> findRoleByPage(int page, int limit, TOrgRole parem)
+	{
+		Sort sort = new Sort(Direction.ASC,"name");
+		Pageable pageable = new PageRequest(page, limit, sort);
+		Page<TOrgRole> result = orgRoleRepository.findAll(Example.of(parem), pageable);
+		return result;
+	}
+
+	@Override
+	public void delete(String[] ids) throws Exception
+	{
+		  if(ids==null || ids.length==0)
+		  {
+			  throw new MioaException("参数不完整");
+		  }
+		  List<TOrgRole> delRole = new ArrayList<TOrgRole>(ids.length);
+		  for(String id : ids)
+		  {
+			  TOrgRole role = new TOrgRole();
+			  role.setId(id);
+			  delRole.add(role);
+		  }
+		  orgRoleRepository.delete(delRole);
+	}
+
+	@Override
+	public void addRole(TOrgRole role)
+	{
+		orgRoleRepository.save(role);
+	}
+
+	@Override
+	public TOrgRole findRoleById(String id)
+	{
+		return orgRoleRepository.findOne(id);
+	}
+
+	@Override
+	public void updateRole(TOrgRole role)
+	{
+		orgRoleRepository.save(role);
 	}
 
 }

@@ -13,6 +13,7 @@ import org.springframework.data.domain.Page;
 
 import com.mjkj.mioa.exception.MioaException;
 import com.mjkj.mioa.org.entity.TOrgUser;
+import com.mjkj.mioa.org.to.OrgUserTO;
 
 /**  
  * ClassName:OrgUserService   
@@ -31,7 +32,7 @@ public interface OrgUserService
 	
 	TOrgUser findById(String id) throws MioaException;
 	
-	TOrgUser addUser(TOrgUser user) throws MioaException;
+	TOrgUser addUser(OrgUserTO user) throws MioaException;
 	
 	TOrgUser updateUser(TOrgUser user) throws MioaException;
 	

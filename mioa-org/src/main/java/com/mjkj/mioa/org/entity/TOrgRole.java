@@ -22,7 +22,7 @@ public class TOrgRole implements Serializable {
 	@GenericGenerator(name="uuid", strategy="uuid")
 	private String id;
 
-	private String desp;
+	private String descr;
 
 	private String domain;
 
@@ -41,12 +41,12 @@ public class TOrgRole implements Serializable {
 		this.id = id;
 	}
 
-	public String getDesp() {
-		return this.desp;
+	public String getDescr() {
+		return this.descr;
 	}
 
-	public void setDesp(String desp) {
-		this.desp = desp;
+	public void setDescr(String descr) {
+		this.descr = descr;
 	}
 
 	public String getDomain() {

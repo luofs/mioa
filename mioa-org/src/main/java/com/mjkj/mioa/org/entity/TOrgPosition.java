@@ -6,8 +6,6 @@ import javax.persistence.*;
 
 import org.hibernate.annotations.GenericGenerator;
 
-import java.util.List;
-
 
 /**
  * The persistent class for the t_org_position database table.
@@ -26,26 +24,20 @@ public class TOrgPosition implements Serializable {
 
 	private String domain;
 
-	private int isdelete;
+	private byte isdelete;
 
 	private String name;
-	
-	private String desc;
 
-	//bi-directional many-to-many association to TOrgDepartment
-	@ManyToMany(mappedBy="TOrgPositions")
-	private List<TOrgDepartment> TOrgDepartments;
-
-	//bi-directional many-to-many association to TOrgUser
-	@ManyToMany(mappedBy="TOrgPositions")
-	private List<TOrgUser> TOrgUsers;
+	private String positdesc;
 
 	public TOrgPosition() {
 	}
-	
-	public TOrgPosition(String name, String desc){
+
+	public TOrgPosition(String name, String positdesc, String domain)
+	{
 		this.name = name;
-		this.desc = desc;
+		this.positdesc = positdesc;
+		this.domain = domain;
 	}
 
 	public String getId() {
@@ -64,11 +56,11 @@ public class TOrgPosition implements Serializable {
 		this.domain = domain;
 	}
 
-	public int getIsdelete() {
+	public byte getIsdelete() {
 		return this.isdelete;
 	}
 
-	public void setIsdelete(int isdelete) {
+	public void setIsdelete(byte isdelete) {
 		this.isdelete = isdelete;
 	}
 
@@ -79,31 +71,13 @@ public class TOrgPosition implements Serializable {
 	public void setName(String name) {
 		this.name = name;
 	}
-	
-	public String getDesc()
-	{
-		return desc;
+
+	public String getPositdesc() {
+		return this.positdesc;
 	}
 
-	public void setDesc(String desc)
-	{
-		this.desc = desc;
-	}
-
-	public List<TOrgDepartment> getTOrgDepartments() {
-		return this.TOrgDepartments;
-	}
-
-	public void setTOrgDepartments(List<TOrgDepartment> TOrgDepartments) {
-		this.TOrgDepartments = TOrgDepartments;
-	}
-
-	public List<TOrgUser> getTOrgUsers() {
-		return this.TOrgUsers;
-	}
-
-	public void setTOrgUsers(List<TOrgUser> TOrgUsers) {
-		this.TOrgUsers = TOrgUsers;
+	public void setPositdesc(String positdesc) {
+		this.positdesc = positdesc;
 	}
 
 }

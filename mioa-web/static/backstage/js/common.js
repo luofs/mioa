@@ -1,5 +1,5 @@
 layui.config({
-	base: '/common/lib/'
+	base: '/mioa/common/lib/'
 });
 layui.use(['jquery','layer','element','common','larryMenu','form'],function(){
 	var $ = layui.$,

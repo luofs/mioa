@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <title>layout 后台大布局 - Layui</title>
+  <link rel="stylesheet" type="text/css" href="../../../../common/frame/layui/css/layui.css" media="all">
+  <link rel="stylesheet" type="text/css" href="../../../css/main.css" media="all">
+  <link rel="stylesheet" type="text/css" href="../../../../zTree/css/zTreeStyle/zTreeStyle.css" media="all">
+</head>
+<body class="layui-layout-body">
+<div class="layui-layout layui-layout-admin">
+  <div class="layui-side layui-bg-gray" style="top:0px">
+    <div class="layui-side-scroll" >
+      <!-- 左侧导航区域 -->
+      <ul id="orgtree" class="ztree" style="width:260px; overflow:auto;"></ul>
+    </div>
+  </div>
+  
+  <div class="layui-body" style="top:0px">
+    <!-- 内容主体区域 -->
+    <div style="padding: 15px;">
+    	<fieldset class="layui-elem-field layui-field-title site-title">
+		  <legend>机构概览</legend>
+		</fieldset>
+		<div class="layui-btn-group larry-group"  id="orgBtnGroup">
+                <button class="layui-btn"  data-type="add"><i class="layui-icon">&#xe61f;</i><cite>新增下级机构</cite></button>
+                <button class="layui-btn layui-btn-normal"  data-type="edit"><i class="layui-icon">&#xe642;</i><cite>编辑当前机构</cite></button>
+                <button class="layui-btn layui-btn-danger"  data-type="del"><i class="layui-icon">&#xe640;</i><cite>删除当前机构</cite></button>
+        </div>
+		<div class="larry-table"  id="orgmsg">
+           <table class="layui-table larry-table-info">
+               <colgroup>                
+                   <col width="120">                
+                   <col>
+               </colgroup>
+               <tbody>
+                   <tr>
+                       <td><span class="tit">机构名称</span></td>
+                       <td><span class="info">{{name}}</span></td>
+                       <td><span class="tit">机构简称</span></td>
+                       <td><span class="info">{{abbr}}</span></td>
+                   </tr>
+                   <tr>
+                       <td><span class="tit">上级机构</span></td>
+                       <td><span class="info">{{parentName}}</span></td>
+                       <td><span class="tit">机构负责人</span></td>
+                       <td><span class="info">张三</span></td>
+                   </tr>
+                   <tr>
+                       <td><span class="tit">总机电话</span></td>
+                       <td><span class="info">{{telphone}}</span></td>
+                       <td><span class="tit">传真</span></td>
+                       <td><span class="info">{{fax}}</span></td>
+                   </tr>
+                   <tr>
+                       <td><span class="tit">联系地址</span></td>
+                       <td><span class="info">{{address}}</span></td>
+                       <td><span class="tit">员工总数</span></td>
+                       <td><span class="info">20</span></td>
+                   </tr>
+               </tbody>
+           </table>
+       </div>
+       
+    </div>
+  </div>
+  
+</div>
+<script type="text/javascript" src="../../../../common/frame/layui/layui.js"></script> 
+<script type="text/javascript" src="../../../../common/plus/jquery-1.12.4.min.js"></script>
+<script type="text/javascript" src="../../../../common/lib/vue.js"></script> 
+<script type="text/javascript" src="../../../../zTree/js/jquery.ztree.all.js"></script>
+<script type="text/javascript" src="../../../js/systemset/orgset/org.js"></script>
+
+</body>
+</html>

@@ -69,13 +69,13 @@ public class SecurityUser extends TOrgUser implements UserDetails
 	@Override
 	public String getUsername()
 	{
-		return this.getName();
+		return super.getName();
 	}
 	
 	@Override
 	public String getPassword()
 	{
-		return this.getPassword();
+		return super.getPassword();
 	}
 
 	@Override
@@ -104,12 +104,12 @@ public class SecurityUser extends TOrgUser implements UserDetails
 	
 	@Override
 	public boolean equals(Object o) {
-		return o instanceof SecurityUser ? this.getUsername().equals(((SecurityUser) o).getUsername()) : false;
+		return o instanceof SecurityUser ? this.getUsername().equals(((SecurityUser) o).getUsername()) && this.getDomain().equals(((SecurityUser) o).getDomain()) : false;
 	}
 
 	@Override
 	public int hashCode() {
-		return this.getUsername().hashCode();
+		return (this.getUsername()+this.getDomain()).hashCode();
 	}
 
 

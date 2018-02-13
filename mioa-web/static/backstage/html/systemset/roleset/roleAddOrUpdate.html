@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>角色新增/编辑</title>
+	<meta name="keywords" content="" />
+    <meta name="description" content="LarryCMS Version:1.09" />
+	<meta name="Author" content="larry" />
+	<meta name="renderer" content="webkit">	
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">	
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+	<meta name="apple-mobile-web-app-status-bar-style" content="black">	
+	<meta name="apple-mobile-web-app-capable" content="yes">	
+	<meta name="format-detection" content="telephone=no">	
+	<link rel="Shortcut Icon" href="/favicon.ico" />
+	<!-- load css -->
+	<link rel="stylesheet" type="text/css" href="../../../../common/frame/layui/css/layui.css" media="all">
+    <link rel="stylesheet" type="text/css" href="../../../../common/css/gobal.css" media="all">
+    <link rel="stylesheet" type="text/css" href="../../../../common/css/animate.css" media="all">
+    <link rel="stylesheet" type="text/css" href="../../../css/common.css" media="all">
+    <link rel="stylesheet" type="text/css" href="../../../css/sys.css" media="all">
+</head>
+</head>
+<body>
+<div class="larry-grid larry-wrapper">
+<form id="editRoleForm" class="layui-form">
+	<input type="hidden" name="id"/>
+  <div class="layui-form-item">
+    <label class="layui-form-label">角色名称</label>
+    <div class="layui-input-block">
+      <input type="text" name="name" value="" required  lay-verify="required" placeholder="请输入角色名称" autocomplete="off" class="layui-input">
+    </div>
+  </div>
+  <div class="layui-form-item">
+    <label class="layui-form-label">角色描述</label>
+    <div class="layui-input-block">
+      <input type="text" name="desc" value=""  placeholder="请输入职位描述" autocomplete="off" class="layui-input">
+    </div>
+  </div>
+
+  <div class="layui-form-item">
+    <div class="layui-input-block">
+      <button class="layui-btn" lay-submit lay-filter="editRoleForm">提交</button>
+      <button class="layui-btn layui-btn-primary">取消</button>
+    </div>
+  </div>
+</form>
+ 
+</div>
+<!-- 加载js文件 -->
+<script type="text/javascript" src="../../../../common/frame/layui/layui.js"></script> 
+<script type="text/javascript" src="../../../js/common.js"></script> 
+
+<script>
+layui.use([ 'mioaTool','form'], function(){
+  var form = layui.form,
+  mioaTool = layui.mioaTool;
+  
+  //监听提交
+  form.on('submit(editRoleForm)', function(data){
+	mioaTool.ajaxSubmit("http://127.0.0.1:8081/mioa/role/addOrUpdateRole", data.field);
+    return false;
+  });
+  
+});
+</script>
+</body>
+</html>

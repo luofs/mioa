@@ -58,19 +58,10 @@ public class TOrgUser implements Serializable{
 	private Timestamp updatetime;
 	
 	private byte disable = 0;
-
-	//bi-directional many-to-many association to TOrgPosition
-	@ManyToMany
-	@JoinTable(
-		name="t_org_user_pos"
-		, joinColumns={
-			@JoinColumn(name="userid")
-			}
-		, inverseJoinColumns={
-			@JoinColumn(name="posid")
-			}
-		)
-	private List<TOrgPosition> TOrgPositions;
+	
+	private Timestamp lastlogintime;
+	
+	private String lastloginip;
 
 	//bi-directional many-to-many association to TOrgRole
 	@ManyToMany(fetch=FetchType.EAGER)
@@ -205,14 +196,6 @@ public class TOrgUser implements Serializable{
 		this.updatetime = updatetime;
 	}
 
-	public List<TOrgPosition> getTOrgPositions() {
-		return this.TOrgPositions;
-	}
-
-	public void setTOrgPositions(List<TOrgPosition> TOrgPositions) {
-		this.TOrgPositions = TOrgPositions;
-	}
-
 	public List<TOrgRole> getTOrgRoles() {
 		return this.TOrgRoles;
 	}
@@ -240,6 +223,26 @@ public class TOrgUser implements Serializable{
 	public void setDisable(byte disable)
 	{
 		this.disable = disable;
+	}
+
+	public Timestamp getLastlogintime()
+	{
+		return lastlogintime;
+	}
+
+	public void setLastlogintime(Timestamp lastlogintime)
+	{
+		this.lastlogintime = lastlogintime;
+	}
+
+	public String getLastloginip()
+	{
+		return lastloginip;
+	}
+
+	public void setLastloginip(String lastloginip)
+	{
+		this.lastloginip = lastloginip;
 	}
 
 	

@@ -82,7 +82,7 @@ layui.use(['jquery','common','layer','form','larryMenu'],function(){
 });
 
 
-function login($,params){alert(1);
+function login($,params){
 	$.post('http://localhost:8080/login', params, function (res) {
         if (res.code==0) {
         	layer.msg('登录成功',{icon:1,time:1000});

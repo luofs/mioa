@@ -12,6 +12,12 @@ package com.mjkj.mioa.org.service.impl;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Example;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
+import org.springframework.data.domain.Sort.Direction;
 import org.springframework.stereotype.Service;
 
 import com.mjkj.mioa.exception.MioaException;
@@ -37,42 +43,47 @@ public class OrgPositionServiceImpl implements OrgPositionService
 	@Override
 	public TOrgPosition addPosition(TOrgPosition position) throws MioaException
 	{
-		TOrgPosition dbPosition = positionRepository.findPositionByNameAndDomainAndIsdeleteEquals  (position.getName(), position.getDomain(), 0);
+		TOrgPosition dbPosition = positionRepository.findPositionByNameAndDomainAndIsdeleteEquals  (position.getName(), position.getDomain(), (byte)0);
 		if (dbPosition != null)
 		{
 			throw new MioaException("岗位已存在");
 		}
-		return positionRepository.save(dbPosition);
+		return positionRepository.save(position);
 	}
 	
 	@Override
 	public boolean removePosition(String id) throws MioaException
 	{
-		
-		// TODO Auto-generated method stub  
-		return false;
+		positionRepository.delete(id);
+		return true;
 	}
 	
 	@Override
 	public boolean updatePosition(TOrgPosition position) throws MioaException
 	{
-		
-		// TODO Auto-generated method stub  
-		return false;
+		positionRepository.save(position);
+		return true;
 	}
 	
 	@Override
 	public TOrgPosition findPositionById(String id) throws MioaException
 	{
-		
-		// TODO Auto-generated method stub  
-		return null;
+		return positionRepository.findOne(id);
 	}
 
 	@Override
 	public List<TOrgPosition> findPositionByDomain(String domain) throws MioaException
 	{
-		return positionRepository.findPositionByDomainAndIsdeleteEquals(domain, 0);
+		return positionRepository.findPositionByDomainAndIsdeleteEquals(domain, (byte)0);
+	}
+
+	@Override
+	public Page<TOrgPosition> findPositionByPage(int page, int pageSize, TOrgPosition position)
+	{
+		Sort sort = new Sort(Direction.ASC,"name");
+		Pageable pageable = new PageRequest(page, pageSize, sort);
+		Page<TOrgPosition> result = positionRepository.findAll(Example.of(position), pageable);
+		return result;
 	}
 	
 }

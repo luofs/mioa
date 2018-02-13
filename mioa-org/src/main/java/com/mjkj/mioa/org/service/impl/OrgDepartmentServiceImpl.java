@@ -13,11 +13,13 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.util.StringUtils;
 
 import com.mjkj.mioa.exception.MioaException;
 import com.mjkj.mioa.org.dao.OrgDepartmentRepository;
 import com.mjkj.mioa.org.entity.TOrgDepartment;
 import com.mjkj.mioa.org.service.OrgDepartmentService;
+import com.mjkj.mioa.util.DateUtil;
 
 /**  
  * ClassName:OrgDepartmentServiceImpl   
@@ -43,7 +45,7 @@ public class OrgDepartmentServiceImpl implements OrgDepartmentService
 		{
 			throw new MioaException("该部门已存在");
 		}
-		return departmentRepository.save(dbDepartment);
+		return departmentRepository.save(department);
 	}
 
 	@Override
@@ -66,6 +68,12 @@ public class OrgDepartmentServiceImpl implements OrgDepartmentService
 		{
 			throw new MioaException("未找到对应部门信息");
 		}
+		else
+		{
+			department.setCreatetime(dbDepartment.getCreatetime());
+			department.setUpdatetime(DateUtil.currentTime());
+			department.setDomain(dbDepartment.getDomain());
+		}
 		departmentRepository.save(department);
 		return true;
 	}
@@ -81,6 +89,29 @@ public class OrgDepartmentServiceImpl implements OrgDepartmentService
 			throws MioaException
 	{
 		return departmentRepository.findAllByDomain(domain);
+	}
+
+	@Override
+	public TOrgDepartment findDepartmentByParentid(String parentId)
+			throws MioaException
+	{
+		  if (!StringUtils.isEmpty(parentId))
+		  {
+			  return departmentRepository.findDepartmentByParentid(parentId);
+		  }
+		  return null;
+	}
+
+	@Override
+	public String findParentDeptName(String id) throws MioaException
+	{
+		  return departmentRepository.findParentDeptName(id);
+	}
+
+	@Override
+	public void delDept(String id) throws MioaException
+	{
+		departmentRepository.delete(id);
 	}
 	
 }

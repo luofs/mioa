@@ -11,6 +11,8 @@ package com.mjkj.mioa.org.service;
 
 import java.util.List;
 
+import org.springframework.data.domain.Page;
+
 import com.mjkj.mioa.exception.MioaException;
 import com.mjkj.mioa.org.entity.TOrgPosition;
 
@@ -74,6 +76,16 @@ public interface OrgPositionService
 	 * @since JDK 1.7
 	 */
 	public List<TOrgPosition> findPositionByDomain(String domain) throws MioaException;
+
+	/**
+	 * 分页查询岗位信息
+	 * @author fsluo  
+	 * @param page
+	 * @param limit
+	 * @return  
+	 * @since JDK 1.7
+	 */
+	public Page<TOrgPosition> findPositionByPage(int page, int limit, TOrgPosition position);
 	
 }
   

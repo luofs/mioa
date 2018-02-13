@@ -1,63 +1,69 @@
-layui.use(['layer', 'form', 'table', 'common'], function() {
+layui.use(['layer', 'form', 'table', 'common', 'mioaTool'], function() {
 	var $ = layui.$,
 		layer = layui.layer,
 		form = layui.form,
 		table = layui.table,
-		common = layui.common;
+		common = layui.common,
+		mioaTool = layui.mioaTool;
 
+	//用户列表表格渲染
 	var tableIns = table.render({
+		id:'id',
 		elem: '#userTables',
 		cols: [
 			[{
 				checkbox: true,
-				width: 60,
+				width: "5%",
 				fixed: true
 			}, {
-				field: 'id',
-				width: 80,
-				title: 'ID',
-				sort: true,
-				// fixed: true
+				field: 'realname',
+				width: "10%",
+				title: '姓名',
+				align: 'center',
 			}, {
-				field: 'username',
-				width: 150,
-				title: '用户名',
+				field: 'name',
+				width: "10%",
+				title: '账号',
 				align: 'center',
 			}, {
 				field: 'group',
-				width: 150,
+				width: "10%",
 				title: '用户组',
 				align: 'center',
 			}, {
-				field: 'phone',
-				width: 150,
+				field: 'mobile',
+				width: "10%",
 				title: '手机号',
 				align: 'center',
 			}, {
-				field: 'status',
-				width: 150,
+				field: 'disable',
+				width: "10%",
 				title: '状态',
 				align: 'center',
+			    templet: function(d){
+			          return d.disable == 0 ? "正常":"禁用"
+			    }
 			}, {
-				field: 'lastip',
-				width: 150,
+				field: 'lastloginip',
+				width: "15%",
 				title: '最后一次登录ip',
 				align: 'center',
 			}, {
-				field: 'lasttime',
-				width: 150,
+				field: 'lastlogintime',
+				width: "10%",
 				title: '上一次登录时间',
 				align: 'center',
 			}, {
 				title: '常用操作',
-				width: 260,
+				width: "20%",
 				align: 'center',
 				toolbar: '#userbar',
 				fixed:"right"
 			}]
 
 		],
-		url: '../../datas/user.json',
+		url: '/mioa/user/findUserList',
+		where:{"domain":"fs.com"},
 		page: true,
 		even: true,
 
@@ -71,12 +77,13 @@ layui.use(['layer', 'form', 'table', 'common'], function() {
 		}else if (obj.event === 'shouquan') {
 			layer.alert('授权行：<br>' + JSON.stringify(data))
 		}else if (obj.event === 'disable') {
-			layer.alert('禁用行：<br>' + JSON.stringify(data))
+			common.larryCmsConfirm('您确认禁用该用户？',function(){
+	        	   mioaTool.ajaxSubmit('http://127.0.0.1:8081/mioa/user/disableOrEnableUser',{'id':data.id,'flag':1});
+	        });
 		}else if (obj.event === 'del') {
-			layer.confirm('真的删除行么', function(index) {
-				obj.del();
-				layer.close(index);
-			});
+			common.larryCmsConfirm('您确认删除该用户？',function(){
+	        	   mioaTool.ajaxSubmit('http://127.0.0.1:8081/mioa/user/delUser',{'id':data.id});
+	        });
 		}
 	});
 
@@ -87,14 +94,15 @@ layui.use(['layer', 'form', 'table', 'common'], function() {
 
 	var active = {
         add:function(){
-           common.larryCmsMessage('最近好累，还是过段时间在写吧！','error');
+        	mioaTool.openWin('新增用户','/mioa/backstage/html/systemset/userAddOrUpdate.html',500,600);
         },
         edit:function(){
-           common.larryCmsMessage('最近好累，还是过段时间在写吧！','error');
+        	mioaTool.openWin('编辑用户','/mioa/backstage/html/systemset/userAddOrUpdate.html',500,600);
         },
         del:function(){
-           common.larryCmsMessage('最近好累，还是过段时间在写吧！','error');
+           common.larryCmsConfirm('您确认删除该用户？',function(){
+        	   mioaTool.ajaxSubmit('http://127.0.0.1:8081/mioa/user/delUser',{'id':1});
+           });
         }
-
 	};
 });

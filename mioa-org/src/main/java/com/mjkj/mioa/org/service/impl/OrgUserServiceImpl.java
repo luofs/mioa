@@ -9,6 +9,7 @@
   
 package com.mjkj.mioa.org.service.impl;  
 
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Example;
 import org.springframework.data.domain.ExampleMatcher;
@@ -23,7 +24,9 @@ import org.springframework.util.StringUtils;
 import com.mjkj.mioa.exception.MioaException;
 import com.mjkj.mioa.org.dao.OrgUserRepository;
 import com.mjkj.mioa.org.entity.TOrgUser;
+import com.mjkj.mioa.org.service.OrgUserPositionService;
 import com.mjkj.mioa.org.service.OrgUserService;
+import com.mjkj.mioa.org.to.OrgUserTO;
 
 /**  
  * ClassName:OrgUserServiceImpl   
@@ -39,6 +42,8 @@ public class OrgUserServiceImpl implements OrgUserService
 	
 	@Autowired
 	OrgUserRepository orgUserRepository;
+	@Autowired
+	OrgUserPositionService orgUserPositionService;
 	
 	@Override
 	public Page<TOrgUser> findUserByPage(int page, int pageSize)
@@ -72,15 +77,22 @@ public class OrgUserServiceImpl implements OrgUserService
 	}
 
 	@Override
-	public TOrgUser addUser(TOrgUser user) throws MioaException
+	public TOrgUser addUser(OrgUserTO userto) throws MioaException
 	{
-		Example<TOrgUser> example = Example.of(user, ExampleMatcher.matching().withMatcher("name", ExampleMatcher.GenericPropertyMatchers.ignoreCase()));
+		/*Example<TOrgUser> example = Example.of(user, ExampleMatcher.matching().withMatcher("name", ExampleMatcher.GenericPropertyMatchers.ignoreCase()));
 		boolean exist = orgUserRepository.exists(example);
 		if(exist)
 		{
 			throw new MioaException("账号已存在");
+		}*/
+		TOrgUser user = new TOrgUser();
+		BeanUtils.copyProperties(userto, user);
+		TOrgUser dbuser = orgUserRepository.save(user);
+		if(userto.getDeptPositmap()!=null && userto.getDeptPositmap().size()>0 
+				&& dbuser!=null && !StringUtils.isEmpty(dbuser.getId())){
+			orgUserPositionService.batchAddUserPosit(dbuser.getId(), userto.getDeptPositmap());
 		}
-		return orgUserRepository.save(user);
+		return dbuser;
 	}
 
 	@Override

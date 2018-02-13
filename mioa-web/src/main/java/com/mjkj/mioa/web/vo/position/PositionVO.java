@@ -18,10 +18,22 @@ package com.mjkj.mioa.web.vo.position;
  */
 public class PositionVO
 {
+	private String id;
 	
 	private String name;
 	
-	private String desc;
+	private String positdesc;
+
+	
+	public String getId()
+	{
+		return id;
+	}
+
+	public void setId(String id)
+	{
+		this.id = id;
+	}
 
 	public String getName()
 	{
@@ -33,15 +45,17 @@ public class PositionVO
 		this.name = name;
 	}
 
-	public String getDesc()
+	public String getPositdesc()
 	{
-		return desc;
+		return positdesc;
 	}
 
-	public void setDesc(String desc)
+	public void setPositdesc(String positdesc)
 	{
-		this.desc = desc;
+		this.positdesc = positdesc;
 	}
+
+	
 	
 	
 }

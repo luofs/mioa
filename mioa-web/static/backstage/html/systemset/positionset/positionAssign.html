@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>职位分配</title>
+	<meta name="keywords" content="" />
+    <meta name="description" content="LarryCMS Version:1.09" />
+	<meta name="Author" content="larry" />
+	<meta name="renderer" content="webkit">	
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">	
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+	<meta name="apple-mobile-web-app-status-bar-style" content="black">	
+	<meta name="apple-mobile-web-app-capable" content="yes">	
+	<meta name="format-detection" content="telephone=no">	
+	<link rel="Shortcut Icon" href="/favicon.ico" />
+	<!-- load css -->
+	<link rel="stylesheet" type="text/css" href="../../../../common/frame/layui/css/layui.css" media="all">
+  <link rel="stylesheet" type="text/css" href="../../../css/main.css" media="all">
+  <link rel="stylesheet" type="text/css" href="../../../../zTree/css/zTreeStyle/zTreeStyle.css" media="all">
+</head>
+</head>
+<body>
+<div class="larry-grid larry-wrapper">
+<form id="positAssignForm" class="layui-form">
+  <div class="layui-form-item">
+    <label class="layui-form-label">职位名称</label>
+    <div class="layui-input-inline">
+    	<input type="hidden" name="positid" />
+    </div>
+    <div class="layui-form-mid layui-word-aux">
+    	<span id="positName"></span>
+    </div>
+  </div>
+  <div class="layui-form-item">
+    <label class="layui-form-label">分配机构</label>
+    <div class="layui-input-block">
+      <input type="text" name="abbr"  id="orgSel" value=""  placeholder="点击选择机构" autocomplete="off" class="layui-input">
+    </div>
+  </div>
+
+  <div class="layui-form-item">
+    <div class="layui-input-block">
+      <button class="layui-btn" lay-submit lay-filter="positAssignForm">提交</button>
+      <button class="layui-btn layui-btn-primary">取消</button>
+    </div>
+  </div>
+</form>
+ 
+</div>
+  <div id="menuContent" class="menuContent" style="display:none; position: absolute;">
+	<ul id="orgtree" class="ztree" style="margin-top:0; width:180px; background-color:antiquewhite;"></ul>
+</div>
+<!-- 加载js文件 -->
+<script type="text/javascript" src="../../../../common/frame/layui/layui.js"></script> 
+<script type="text/javascript" src="../../../js/common.js"></script> 
+<script type="text/javascript" src="../../../../common/plus/jquery-1.12.4.min.js"></script>
+<script type="text/javascript" src="../../../../zTree/js/jquery.ztree.all.js"></script>
+<script type="text/javascript" src="../../../js/systemset/positionset/positionAssign.js"></script>
+
+</body>
+</html>

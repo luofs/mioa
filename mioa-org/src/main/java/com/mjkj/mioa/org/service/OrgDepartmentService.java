@@ -73,5 +73,34 @@ public interface OrgDepartmentService
 	 * @since JDK 1.7
 	 */
 	public List<TOrgDepartment> findAllDepartment(String domain) throws MioaException;
+	
+	/**
+	 * 根据父级部门id查询父级部门信息
+	 * @author fsluo  
+	 * @param parentId
+	 * @return TOrgDepartment
+	 * @throws MioaException  
+	 * @since JDK 1.7
+	 */
+	public TOrgDepartment findDepartmentByParentid(String parentId) throws MioaException;
+
+	/**
+	 * 查询父级部门名称
+	 * @author fsluo  
+	 * @param id
+	 * @return
+	 * @throws MioaException  
+	 * @since JDK 1.7
+	 */
+	public String findParentDeptName(String id) throws MioaException;
+
+	/**
+	 * 删除部门
+	 * @author fsluo  
+	 * @param id
+	 * @throws MioaException  
+	 * @since JDK 1.7
+	 */
+	public void delDept(String id) throws MioaException;
 }
   

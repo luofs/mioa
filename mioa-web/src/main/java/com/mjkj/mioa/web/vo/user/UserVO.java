@@ -9,6 +9,8 @@
   
 package com.mjkj.mioa.web.vo.user;  
 
+import java.util.List;
+
 
 /**  
  * ClassName:UserVO   
@@ -58,6 +60,11 @@ public class UserVO
 	 * 座机
 	 */
 	private String telephone;
+	
+	/**
+	 * 岗位
+	 */
+	private List<String> selectPostIds;
 
 	public String getAddress()
 	{
@@ -137,6 +144,16 @@ public class UserVO
 	public void setId(String id)
 	{
 		this.id = id;
+	}
+
+	public List<String> getSelectPostIds()
+	{
+		return selectPostIds;
+	}
+
+	public void setSelectPostIds(List<String> selectPostIds)
+	{
+		this.selectPostIds = selectPostIds;
 	}
 	
 	

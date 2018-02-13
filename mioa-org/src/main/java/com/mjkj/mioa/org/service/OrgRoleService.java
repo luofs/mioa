@@ -10,6 +10,9 @@
 package com.mjkj.mioa.org.service;   
 
 import java.util.List;
+
+import org.springframework.data.domain.Page;
+
 import com.mjkj.mioa.exception.MioaException;
 import com.mjkj.mioa.org.entity.TOrgRole;
 
@@ -27,5 +30,15 @@ public interface OrgRoleService
 {
 
 	List<TOrgRole> findAllRoleByDomain(String domain) throws MioaException;
+
+	Page<TOrgRole> findRoleByPage(int page, int limit, TOrgRole parem);
+
+	void delete(String[] ids) throws Exception;
+
+	void addRole(TOrgRole role);
+
+	TOrgRole findRoleById(String id);
+
+	void updateRole(TOrgRole role);
 }
   
